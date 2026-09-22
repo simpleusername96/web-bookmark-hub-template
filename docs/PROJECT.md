@@ -5,7 +5,7 @@ Web Bookmark Hub is a local, private index of web pointers shared by a person an
 ## Implemented boundaries
 
 - `registry/` owns SQLite persistence, canonical URL reuse, folders, tags, rules, visual assets, revisions and AI eligibility. One canonical URL identifies one entry; repeated capture preserves authored metadata.
-- `web/` owns the human UI and retrieval state. Grid is general; Feed selects entries with covers; List selects entries without covers. Shared search, filters and sort apply to all views. Details are read-first dialogs with explicit autosaving editing.
+- `web/` owns the human UI and retrieval state. Grid is general; every Grid card reads metadata, a 4:3 image or summary stage, then the title and available tags, including missing-content and failed-image states. Feed selects entries with covers; List selects entries without covers. Shared search, filters and sort apply to all views. Details are read-first dialogs with explicit autosaving editing.
 - `server/` owns the authenticated loopback HTTP API. Web writes require sessions and CSRF; extension clients use paired credentials. Do not expose the server to the public internet.
 - `extension/`, `profiles.js`, `content-script.js`, `popup.*` and `service-worker.js` own explicit current-page and selected-image capture. Site templates discover candidates; they do not author privacy or storage policy.
 - `enrichment/` owns bounded link extraction and the Codex summary prompt. Local agent CRUD is a convenience path; it is not host isolation. See `docs/project/ENRICHMENT.md`.

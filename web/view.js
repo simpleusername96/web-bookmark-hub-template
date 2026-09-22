@@ -377,8 +377,7 @@
     if (presentation.title) {
       const title = element('h3', 'entry-title entry-card-title', presentation.title);
       title.dataset.tooltip = presentation.title;
-      if (presentation.state === 'cover') body.append(title);
-      else body.insertBefore(title, main);
+      body.append(title);
     }
     const tags = tagList(entry, 3);
     appendResultFooter(body, entry, tags, selectedIds, onSelect);

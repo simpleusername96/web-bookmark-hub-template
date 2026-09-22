@@ -227,7 +227,7 @@ test('production shell separates user Folders, URL structure, Add URL metadata, 
   assert.match(view, /link\.addEventListener\('click', stopCardInteraction\);[\s\S]*link\.addEventListener\('pointerup', stopCardInteraction\);[\s\S]*link\.addEventListener\('keydown', stopCardInteraction\)/);
   assert.match(view, /if \(presentation\.title\) \{[\s\S]*body\.append\(title\)/);
   assert.match(view, /entry-card-summary/);
-  assert.match(view, /body\.insertBefore\(title, main\)/);
+  assert.doesNotMatch(view, /body\.insertBefore\(title, main\)/);
   assert.match(view, /const facts = element\('span', 'entry-meta-facts'\)/);
   assert.match(view, /header\.append\(metaLine\(entry, externalUrl\(presentation\.url\)\)\)/);
   assert.match(view, /fallback\.append\(cardFallbackStage\(presentation\)\)/);
