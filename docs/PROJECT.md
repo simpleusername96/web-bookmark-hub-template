@@ -10,6 +10,7 @@ Web Bookmark Hub is a local, private index of web pointers shared by a person an
 - `extension/`, `profiles.js`, `content-script.js`, `popup.*` and `service-worker.js` own explicit current-page and selected-image capture. Site templates discover candidates; they do not author privacy or storage policy.
 - `enrichment/` owns bounded link extraction and the Codex summary prompt. Local agent CRUD is a convenience path; it is not host isolation. See `docs/project/ENRICHMENT.md`.
 - `examples/` and `scripts/seed-demo.js` own invented sample records and generated covers. Sample URLs use reserved test domains, and sample summaries are fixtures. No owner collection is included.
+- `docs/images/{reading,summary,library}-{ko,en}.png` are approved introduction screenshots of isolated fictional data. Their summaries and folder/tag assignments are authored examples disclosed in both READMEs; they are not evidence of live AI execution or site compatibility. This does not authorize publishing user collections or runtime captures.
 
 ## Invariants
 
