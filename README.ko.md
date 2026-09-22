@@ -2,41 +2,29 @@
 
 한국어 · [English](README.md)
 
-**Codex와 함께 나만의 웹 자료 정리 도구를 만드는 템플릿입니다.**
+다양한 곳에서 정보를 저장하는 사람들을 위한 가이드라인이자 템플릿입니다.
+Codex와 함께 필요한 기능만 골라, 사용 목적에 맞게 수정해 사용하세요.
 
-블로그, arXiv, X, LinkedIn 등에서 읽은 자료를 저장하고 요약·검색·폴더·태그로 정리합니다. 이 앱을 출발점으로 삼아, Codex에 본인의 목적에 맞는 기능과 화면을 만들어 달라고 요청하세요.
+## 주요 기능
 
-![자료함](docs/images/library-ko.png)
+**1. 웹 자료 저장** — Chrome 확장 프로그램에서 **현재 페이지 저장**. **Ctrl+Shift+E**로 저장하면 Codex 정리까지 이어집니다.
 
-## Codex로 시작하기
+![Chrome에서 읽던 페이지 저장](docs/images/extension-save.png)
 
-**Use this template**으로 저장소를 만들고, 내 컴퓨터에 받아 Codex에서 엽니다. 원하는 용도를 넣어 요청하세요.
+**2. Codex로 정리** — 제목·요약과 대표 이미지 또는 페이지 스냅샷을 남깁니다. 카드를 열어 요약과 원문을 확인합니다.
 
-> 이 템플릿을 [논문 리서치 / 디자인 레퍼런스 / 업무 자료 정리]용으로 바꿔줘.
-> 프로젝트 지침과 docs/SETUP.md를 읽고 실행 환경을 준비해줘. 앱을 실행하고 Chrome 확장 프로그램 연결을 안내해줘.
-> 그다음 내 작업에 맞는 분류와 화면을 함께 정하자.
+![저장한 자료의 이미지와 요약 확인](docs/images/summary-ko.png)
 
-## 읽다가 저장하기
+**3. 폴더·태그로 분류** — 자료 선택 → **Tags** 또는 **더 보기 → Folder로 이동** → **적용**.
 
-페이지에서 **Ctrl+Shift+E**를 누르면 저장 후 Codex가 요약합니다. macOS는 **Command+Shift+E**입니다.
+![자료를 선택해 폴더로 이동](docs/images/organize-ko.png)
 
-| 읽던 페이지 | 자료함에서 다시 열기 |
-| --- | --- |
-| ![읽던 글](docs/images/reading-ko.png) | ![원문과 요약](docs/images/summary-ko.png) |
+**4. 필요한 자료 다시 찾기** — 검색어·폴더·태그를 함께 사용합니다.
 
-자동 요약을 쓰려면 Codex CLI 로그인과 **Rules → Defaults → Normal (local)** 설정이 필요합니다. Private 자료는 AI 처리에서 제외됩니다.
+![폴더 안에서 검색한 자료](docs/images/search-ko.png)
 
-## 확장 프로그램에서 누를 것
+## 시작하기
 
-`chrome://extensions` → **개발자 모드** → **압축해제된 확장 프로그램 로드**에서 저장소 폴더를 선택합니다.
+**Use this template**으로 저장소를 만든 뒤 Codex에 요청하세요: “docs/SETUP.md를 읽고 실행·확장 프로그램 연결을 준비해줘. [나의 용도]에 맞게 수정하고 싶어.”
 
-| 1. 연결 | 2. 링크 저장 | 3. 저장한 글 열기 |
-| --- | --- | --- |
-| ![연결 버튼](docs/images/extension-connect.png) | ![현재 페이지 저장 버튼](docs/images/extension-save.png) | ![저장 완료와 바로가기](docs/images/extension-saved.png) |
-| **Web UI에서 연결**을 누른 뒤, 앱에서 **연결 승인** | **현재 페이지 저장**을 누르면 링크 저장. 요약까지 하려면 **Ctrl+Shift+E** | **바로가기**를 누르면 저장한 항목으로 이동 |
-
-이미지를 고르려면 **페이지에서 이미지 선택**을 누릅니다. 폴더와 태그는 **저장 옵션**에서 지정할 수 있습니다.
-
----
-
-로컬 저장 · 한국어/영어 UI · [실행 환경과 설정](docs/SETUP.md) · [MIT](LICENSE)
+[설정 안내](docs/SETUP.md) · [MIT](LICENSE)

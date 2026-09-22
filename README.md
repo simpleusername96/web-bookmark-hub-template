@@ -2,41 +2,29 @@
 
 English · [한국어](README.ko.md)
 
-**A template for building your own web research tool with Codex.**
+A guide and template for people who save information from many different places.
+Use Codex to pick the parts you need and adapt them to your own workflow.
 
-Collect what you read on blogs, arXiv, X, LinkedIn and elsewhere. Save links, summarize them, and find them through search, folders and tags. Use this app as a starting point, then ask Codex to adapt its features and interface to your work.
+## Key features
 
-![Your library](docs/images/library-en.png)
+**1. Save web sources** — Click **현재 페이지 저장** (Save current page) in the Chrome extension. **Ctrl+Shift+E** also starts Codex organization.
 
-## Start with Codex
+![Save the page you are reading in Chrome](docs/images/extension-save.png)
 
-Choose **Use this template**, clone your repository, and open it in Codex. Tell it what you want to build:
+**2. Organize with Codex** — Keep a title, summary, and representative image or page snapshot. Open a card to review the summary and original source.
 
-> Adapt this template for [paper research / design references / work research].
-> Read the project instructions and docs/SETUP.md, prepare the environment, start the app, and guide me through connecting the Chrome extension.
-> Then help me choose the fields, organization and interface for my workflow.
+![Review the saved source and summary](docs/images/summary-en.png)
 
-## Save while reading
+**3. Sort into folders and tags** — Select sources → **Tags** or **More → Move to Folder** → **Apply**.
 
-Press **Ctrl+Shift+E** on a page to save it and start a Codex summary. On macOS, use **Command+Shift+E**.
+![Move selected sources into a folder](docs/images/organize-en.png)
 
-| The page you are reading | Open it in your library |
-| --- | --- |
-| ![An article](docs/images/reading-en.png) | ![Source and summary](docs/images/summary-en.png) |
+**4. Find sources again** — Combine search terms, folders and tags.
 
-Automatic summaries require a signed-in Codex CLI and **Rules → Defaults → Normal (local)**. Private entries are excluded from AI processing.
+![Search within a folder](docs/images/search-en.png)
 
-## Chrome extension controls
+## Get started
 
-Open `chrome://extensions` → **Developer mode** → **Load unpacked**, then select the repository folder.
+Choose **Use this template**, then ask Codex: “Read docs/SETUP.md, prepare the app and Chrome extension, and help me adapt this project for [my use case].”
 
-| 1. Connect | 2. Save the link | 3. Open the saved entry |
-| --- | --- | --- |
-| ![Connect button](docs/images/extension-connect.png) | ![Save current page button](docs/images/extension-save.png) | ![Saved confirmation and entry link](docs/images/extension-saved.png) |
-| Click **Web UI에서 연결** (Connect), then **Approve connection** in the app | Click **현재 페이지 저장** (Save current page). For a summary too, use **Ctrl+Shift+E** | Click **바로가기** to open the saved entry |
-
-Use **페이지에서 이미지 선택** to select images. Choose a folder and tags under **저장 옵션** (Save options).
-
----
-
-Local storage · Korean/English web UI · [Environment and setup](docs/SETUP.md) · [MIT](LICENSE)
+[Setup](docs/SETUP.md) · [MIT](LICENSE)
