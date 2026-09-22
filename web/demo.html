@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Web Bookmark Hub</title>
+    <link rel="stylesheet" href="styles.css?v=cards-settings-2">
+    <link rel="stylesheet" href="sidebar-navigation.css?v=navigation-6">
+    <link rel="stylesheet" href="ui-theme.css?v=cards-settings-2">
+    <script src="ui-icons.js?v=clean-retrieval-1" defer></script>
+    <script src="ui-language.js?v=cards-settings-2" defer></script>
+    <script src="content-types.js?v=content-type-1" defer></script>
+    <script src="demo-data.js?v=structural-nav-1" defer></script>
+    <script src="demo-source.js?v=content-type-1" defer></script>
+    <script src="demo-boot.js?v=structural-nav-1" defer></script>
+    <script src="query-state.js?v=view-settings-1" defer></script>
+    <script src="sort-model.js?v=sort-popover-1" defer></script>
+    <script src="settings-controller.js?v=view-settings-1" defer></script>
+    <script src="results-view.js?v=clean-retrieval-1" defer></script>
+    <script src="detail-presentation.js?v=single-url-1" defer></script>
+    <script src="card-presentation.js?v=card-density-1" defer></script>
+    <script src="detail-view.js?v=clean-retrieval-1" defer></script>
+    <script src="detail-navigation.js?v=detail-navigation-1" defer></script>
+    <script src="tag-suggestions.js?v=tag-suggestions-2" defer></script>
+    <script src="view.js?v=clean-retrieval-1" defer></script>
+    <script src="sidebar-navigation.js?v=clean-retrieval-1" defer></script>
+    <script src="responsive-workflows.js?v=clean-retrieval-1" defer></script>
+    <script src="selection-actions.js?v=clean-retrieval-1" defer></script>
+    <script src="app.js?v=clean-retrieval-1" defer></script>
+  </head>
+  <body>
+    <div class="app-shell" id="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Entry navigation">
+        <button id="sidebar-mobile-close" class="sidebar-mobile-close" type="button" aria-label="Close sidebar" data-i18n-aria-label="sidebar.close" data-icon="close"></button>
+        <nav class="sidebar-nav" aria-label="Browse entries">
+          <details class="nav-group">
+            <summary class="nav-label"><span data-icon="chevron"></span>Folders</summary>
+            <button class="tree-collapse-control" type="button" data-collapse-tree="folders" aria-label="Collapse all Folders" data-tooltip="Collapse all Folders" data-i18n-collapse-section="Folders" data-icon="collapse"></button>
+            <div id="folders" class="facet-list tree-list" aria-label="Folders">
+              <p class="sidebar-empty">Loading…</p>
+            </div>
+          </details>
+
+          <details class="nav-group">
+            <summary class="nav-label"><span data-icon="chevron"></span>URLs</summary>
+            <button class="tree-collapse-control" type="button" data-collapse-tree="url-groups" aria-label="Collapse all URLs" data-tooltip="Collapse all URLs" data-i18n-collapse-section="URLs" data-icon="collapse"></button>
+            <div id="url-groups" class="facet-list tree-list auto-group-list" aria-label="URL groups">
+              <p class="sidebar-empty">Loading…</p>
+            </div>
+          </details>
+
+        </nav>
+      </aside>
+    <button id="sidebar-backdrop" class="sidebar-backdrop" type="button" aria-label="Close sidebar" data-i18n-aria-label="sidebar.close" hidden></button>
+
+      <main class="main-content" id="main-content">
+        <h1 id="page-title" class="visually-hidden">All entries</h1>
+        <header class="results-header">
+          <div class="control-slot" id="control-slot">
+            <div class="toolbar browse-toolbar" id="browse-toolbar" aria-label="Entry controls">
+            <button class="button button-quiet icon-button sidebar-toggle" id="sidebar-toggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Hide sidebar" data-tooltip="Hide sidebar" data-icon="sidebar"></button>
+
+            <label class="search-field" for="search-input"><span class="search-icon" data-icon="search" aria-hidden="true"></span>
+              <span class="visually-hidden">Search entries</span>
+              <input id="search-input" name="search" type="search" placeholder="Search bookmarks…" autocomplete="off" data-i18n-placeholder="placeholder.search">
+            </label>
+
+            <button class="button icon-button default-view-button" id="default-view-button" type="button" aria-label="Return to default view" data-tooltip="Return to default view" data-i18n-aria-label="action.returnDefault" data-i18n-tooltip="action.returnDefault" data-icon="home"></button>
+
+            <button class="button icon-button filter-button" id="filter-button" type="button" aria-label="Open filters" aria-haspopup="dialog" aria-controls="filter-dialog" data-tooltip="Open filters" data-i18n-aria-label="action.openFilters" data-i18n-tooltip="action.openFilters" data-icon="filter"></button>
+
+            <div class="sort-control" id="sort-control">
+              <button class="button sort-trigger" id="sort-trigger" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sort-popover">Saved ↓</button>
+              <div class="sort-popover" id="sort-popover" role="dialog" aria-label="Sort entries" hidden>
+                <span class="sort-label">Sort order</span>
+                <div class="sort-options" role="radiogroup" aria-label="Sort order">
+                  <button class="sort-option" type="button" role="radio" data-sort-value="newest"><span>Saved</span><span>Newest ↓</span></button>
+                  <button class="sort-option" type="button" role="radio" data-sort-value="oldest"><span>Saved</span><span>Oldest ↑</span></button>
+                  <button class="sort-option" type="button" role="radio" data-sort-value="updated_desc"><span>Edited</span><span>Newest ↓</span></button>
+                  <button class="sort-option" type="button" role="radio" data-sort-value="updated_asc"><span>Edited</span><span>Oldest ↑</span></button>
+                  <button class="sort-option" type="button" role="radio" data-sort-value="title_asc"><span>Title</span><span>A–Z ↑</span></button>
+                  <button class="sort-option" type="button" role="radio" data-sort-value="title_desc"><span>Title</span><span>Z–A ↓</span></button>
+                  <button class="sort-option" type="button" role="radio" data-sort-value="source_asc"><span>Source</span><span>A–Z ↑</span></button>
+                  <button class="sort-option" type="button" role="radio" data-sort-value="source_desc"><span>Source</span><span>Z–A ↓</span></button>
+                </div>
+              </div>
+            </div>
+        <button class="button icon-button settings-button" id="settings-button" type="button" aria-label="Open settings" aria-haspopup="dialog" aria-controls="settings-dialog" data-tooltip="Open Settings" data-i18n-aria-label="action.openSettings" data-i18n-tooltip="action.openSettings" data-icon="settings"></button>
+            <output id="result-count" class="visually-hidden" aria-live="polite">Loading entries…</output>
+            </div>
+          </div>
+          <div class="result-context-slot" id="result-context-slot">
+            <div class="active-filter-summary" id="active-filter-summary" hidden>
+              <div class="active-filter-chips" id="active-filter-chips" aria-label="Active filters"></div>
+              <button class="button button-quiet clear-filters-button" id="clear-filters-button" type="button" data-i18n="action.clearAll">Clear all</button>
+            </div>
+            <div class="batch-bar" id="batch-bar" role="group" aria-label="Selected entries" data-i18n-aria-label="selection.title" hidden>
+              <div class="selection-summary"><label class="batch-select-all"><input id="batch-select-all" type="checkbox" aria-label="Select loaded entries" data-i18n-aria-label="selection.loaded"><span id="batch-selected-count">0 selected</span></label><button class="button button-quiet" id="batch-select-results" type="button" aria-pressed="false">Select all results</button></div>
+              <div class="selection-actions">
+                <button class="button button-quiet" id="batch-ai-summary" type="button"><span data-icon="ai"></span><span data-i18n="selection.ai">AI summary</span></button>
+                <button class="button button-quiet" type="button" data-batch-action="add_tags" aria-controls="batch-editor" aria-expanded="false"><span data-icon="tags"></span><span>Tags</span></button>
+                <button class="button button-quiet" id="batch-more" type="button" popovertarget="batch-more-menu" aria-label="More actions" data-i18n-aria-label="selection.more"><span data-icon="more"></span><span data-i18n="selection.more">More</span></button>
+                <button class="button button-quiet icon-button" id="batch-done" type="button" aria-label="Clear selection" data-tooltip="Clear selection" data-i18n-aria-label="selection.clear" data-i18n-tooltip="selection.clear"><span data-icon="close"></span></button>
+              </div>
+              <div class="selection-menu" id="batch-more-menu" popover="auto" aria-label="More actions" data-i18n-aria-label="selection.more">
+                <button type="button" data-batch-action="set_kind"><span data-icon="type"></span>Content type</button>
+                <button type="button" data-batch-action="set_visibility"><span data-icon="lock"></span>Visibility</button>
+                <button type="button" data-batch-action="set_folder"><span data-icon="folder"></span><span data-i18n="action.moveToFolder">Move to Folder</span></button>
+                <button type="button" class="selection-delete" data-batch-action="delete"><span data-icon="delete"></span><span data-i18n="action.deletePermanently">Delete permanently</span></button>
+              </div>
+              <div class="selection-editor" id="batch-editor" popover="auto" role="dialog" aria-labelledby="batch-editor-title">
+                <div class="selection-editor-heading"><h2 id="batch-editor-title">Move to Folder</h2><button class="button button-quiet icon-button" id="batch-editor-close" type="button" aria-label="Close action"><span data-icon="close"></span></button></div>
+                <label class="batch-operation-label visually-hidden" for="batch-operation" data-i18n="selection.operation">Action</label>
+                <select id="batch-operation"><option value="set_folder" data-i18n="action.moveToFolder">Move to Folder</option><option value="add_tags" data-i18n="action.addTags">Add Tags</option><option value="remove_tags" data-i18n="action.removeTags">Remove Tags</option><option value="set_kind" data-i18n="action.setContentType">Set Content type</option><option value="set_visibility" data-i18n="action.setVisibility">Set Visibility</option><option value="delete" data-i18n="action.deletePermanently">Delete permanently</option></select>
+                <label id="batch-value-label" class="batch-value-label" for="batch-folder">Folder</label>
+                <select id="batch-folder" aria-label="Folder"><option value="">No Folder</option></select>
+                <input id="batch-tags" type="text" placeholder="Comma-separated tags" data-i18n-placeholder="placeholder.commaSeparated" aria-label="Tags" hidden>
+                <select id="batch-kind" aria-label="Content type" hidden></select>
+                <select id="batch-visibility" aria-label="Visibility" hidden><option value="normal">Normal</option><option value="private">Private</option></select>
+                <p id="batch-delete-hint" data-i18n="selection.deleteHint" hidden>Entries, notes and previews will be permanently deleted. Confirm the count next.</p>
+                <div class="batch-actions"><button class="button button-primary" id="batch-apply" type="button" data-i18n="action.apply">적용</button></div>
+                <p id="batch-editor-feedback" role="status" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </header>
+        <p class="visually-hidden" id="view-scope-label">Grid shows all URLs.</p>
+        <p id="app-status" class="app-status" role="status" aria-live="polite" data-i18n="app.connecting">Connecting to the local Registry…</p>
+
+        <section class="results-section" aria-label="Saved entries" aria-busy="true">
+          <div id="results" class="results results-grid">
+            <div class="state-message" role="status">Loading your saved entries…</div>
+          </div>
+          <div id="feed-loader" class="feed-loader" hidden>
+            <button id="feed-load-more" class="button" type="button" data-i18n="action.loadMore">Load more</button>
+            <span id="feed-load-status" class="feed-load-status" role="status" aria-live="polite"></span>
+          </div>
+          <nav id="pagination" class="pagination" aria-label="Result pages"></nav>
+        </section>
+      </main>
+    </div>
+
+    <div id="mobile-selection" class="mobile-selection" role="group" aria-label="Selected entries" data-i18n-aria-label="selection.title" hidden>
+      <span id="mobile-selected-count" class="mobile-selected-count" aria-live="polite"></span>
+      <button id="mobile-batch-open" class="button button-primary" type="button" aria-haspopup="dialog" aria-controls="batch-dialog" data-i18n="selection.actions">Actions</button>
+      <button id="mobile-batch-done" class="button button-quiet" type="button" data-i18n="action.done">Done</button>
+    </div>
+    <dialog id="batch-dialog" class="entry-dialog batch-dialog" aria-labelledby="batch-dialog-title">
+      <div class="dialog-header">
+        <h2 id="batch-dialog-title" data-i18n="selection.title">Selected entries</h2>
+        <button class="button button-quiet icon-button" type="button" data-dialog-close aria-label="Close actions" data-i18n-aria-label="selection.close" data-icon="close"></button>
+      </div>
+      <div id="batch-dialog-body" class="batch-dialog-body"></div>
+      <p id="batch-status" class="batch-status" role="status" aria-live="polite"></p>
+    </dialog>
+
+    <dialog id="filter-dialog" class="entry-dialog filter-dialog" aria-labelledby="filter-dialog-title">
+      <div class="dialog-header">
+        <h2 id="filter-dialog-title">Filters</h2>
+      <button class="button button-quiet icon-button" type="button" data-dialog-close aria-label="Close filters" data-tooltip="Close" data-i18n-aria-label="action.closeFilters" data-i18n-tooltip="action.close" data-icon="close"></button>
+      </div>
+      <form id="filter-form" class="filter-dialog-content">
+        <div class="filter-form-grid">
+          <div class="form-field"><label for="filter-preview">Image preview</label><select id="filter-preview"><option value="">Any</option><option value="with">Has image</option><option value="without">No image</option></select><span id="filter-preview-hint" class="optional"></span></div>
+          <div class="form-field"><label for="filter-kind">Content type</label><select id="filter-kind"><option value="">Any</option></select></div>
+          <div class="form-field"><label for="filter-source">Source domain</label><input id="filter-source" type="text" inputmode="url" placeholder="example.com"></div>
+          <div class="form-field"><label for="filter-visibility">Visibility</label><select id="filter-visibility"><option value="">Any</option><option value="normal">Normal</option><option value="private">Private</option></select></div>
+          <div class="form-field"><label for="filter-folder">Folder</label><select id="filter-folder"><option value="">Any Folder</option></select></div>
+          <div class="form-field"><label for="filter-tag">Tag</label><input id="filter-tag" type="text" placeholder="reference"></div>
+          <div class="form-field"><label for="filter-saved-from">Saved from</label><input id="filter-saved-from" type="date"><button class="button button-quiet filter-date-preset" id="filter-recent-preset" type="button" aria-pressed="false" data-i18n="action.last14Days">Last 14 days</button></div>
+          <div class="form-field"><label for="filter-saved-to">Saved to</label><input id="filter-saved-to" type="date"></div>
+        </div>
+        <div class="dialog-actions"><button class="button button-quiet" id="filter-reset-button" type="button" data-i18n="action.clearAll">Clear all</button><button class="button button-primary" type="submit" data-i18n="action.applyFilters">Apply filters</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="detail-dialog" class="entry-dialog detail-dialog" aria-labelledby="detail-dialog-title">
+      <h2 id="detail-dialog-title" class="visually-hidden">Entry details</h2>
+    <button id="detail-previous" class="button button-quiet icon-button detail-dialog-nav detail-dialog-previous" type="button" aria-label="Previous entry" data-tooltip="Previous entry" data-i18n-aria-label="action.previousEntry" data-i18n-tooltip="action.previousEntry" data-icon="previous"></button>
+    <button id="detail-next" class="button button-quiet icon-button detail-dialog-nav detail-dialog-next" type="button" aria-label="Next entry" data-tooltip="Next entry" data-i18n-aria-label="action.nextEntry" data-i18n-tooltip="action.nextEntry" data-icon="next"></button>
+      <div id="detail-content" class="detail-content"></div>
+    </dialog>
+
+    <dialog id="settings-dialog" class="entry-dialog settings-dialog" aria-labelledby="settings-dialog-title">
+        <div class="dialog-header">
+          <h2 id="settings-dialog-title" data-i18n="settings.title">Settings</h2>
+          <div class="dialog-header-actions">
+            <label class="language-control" for="ui-language"><span class="visually-hidden">Language</span><select id="ui-language" aria-label="Language"><option value="en">English</option><option value="ko">한국어</option></select></label>
+          <button class="button button-quiet icon-button" type="button" data-dialog-close aria-label="Close settings" data-tooltip="Close" data-i18n-aria-label="action.closeSettings" data-i18n-tooltip="action.close" data-icon="close"></button>
+          </div>
+        </div>
+      <div class="settings-tabs" role="tablist" aria-label="Settings sections">
+        <button id="settings-add-tab" class="settings-tab" type="button" role="tab" aria-selected="true" aria-controls="settings-add-panel" data-settings-panel="add" data-i18n="action.addUrl">Add URL</button>
+        <button id="settings-view-tab" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="settings-view-panel" data-settings-panel="view" data-i18n="settings.view">View</button>
+        <button id="settings-folders-tab" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="settings-folders-panel" data-settings-panel="folders">Folders</button>
+        <button id="settings-rules-tab" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="settings-rules-panel" data-settings-panel="rules">Rules</button>
+        <button id="settings-guide-tab" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="settings-guide-panel" data-settings-panel="guide" data-i18n="settings.guide">Guide</button>
+        <button id="settings-chrome-tab" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="settings-chrome-panel" data-settings-panel="chrome">Chrome</button>
+        <button id="settings-ai-tab" class="settings-tab" type="button" role="tab" aria-selected="false" aria-controls="settings-ai-panel" data-settings-panel="ai" data-i18n="settings.ai">AI</button>
+      </div>
+      <section id="settings-add-panel" class="settings-panel" role="tabpanel" aria-labelledby="settings-add-tab" data-settings-content="add">
+        <form id="add-form" class="add-form" novalidate>
+          <div class="form-field">
+            <label for="add-url-input">URL</label>
+            <input id="add-url-input" name="url" type="url" inputmode="url" autocomplete="url" placeholder="https://example.test/article" required aria-describedby="add-form-error add-form-result">
+            <p id="add-form-error" class="form-error" role="alert" aria-live="assertive" hidden></p>
+            <div id="add-form-result" class="add-form-result" role="status" aria-live="polite" hidden></div>
+          </div>
+          <div class="form-field"><label for="add-title-input"><span data-i18n="form.title">Title</span><span class="optional" data-i18n="form.optional">Optional</span></label><input id="add-title-input" name="title" type="text" autocomplete="off" placeholder="Use a short title" data-i18n-placeholder="placeholder.title"></div>
+          <details id="add-options" class="add-options">
+            <summary><span data-i18n="form.moreOptions">More options</span><span id="add-options-state" class="optional" data-i18n="form.optionsSet" hidden>Values set</span></summary>
+            <div class="add-options-content">
+              <div class="form-field"><label for="add-comment-input"><span data-i18n="form.note">Note</span><span class="optional" data-i18n="form.optional">Optional</span></label><textarea id="add-comment-input" name="comment" rows="2" maxlength="20000" placeholder="Why this link matters" data-i18n-placeholder="placeholder.note"></textarea></div>
+              <div class="form-field"><label for="add-tags-input">Tags<span class="optional" data-i18n="form.optionalTags">Optional, comma separated</span></label><input id="add-tags-input" name="tags" type="text" autocomplete="off" placeholder="reference, visual"></div>
+              <div class="form-grid">
+                <div class="form-field"><label for="add-folder-input">Folder<span class="optional" data-i18n="form.optional">Optional</span></label><select id="add-folder-input" name="folder"><option value="">No Folder</option></select></div>
+                <div class="form-field"><label for="add-kind-input">Content type</label><select id="add-kind-input" name="kind"><option value="page">Web page</option></select></div>
+                <div class="form-field"><div class="field-label-with-help"><label for="add-visibility-input">Visibility</label><details class="settings-help settings-help-inline"><summary aria-label="About Registry rules">?</summary><p data-i18n="help.addPolicy">Registry rules match the saved URL's hostname and path. Normal means ordinary local visibility, not public sharing.</p></details></div><select id="add-visibility-input" name="visibility"><option value="default" data-i18n="form.useRules">Use Registry rules</option><option value="normal">Normal</option><option value="private">Private</option></select></div>
+              </div>
+            </div>
+          </details>
+          <div class="dialog-actions"><button class="button button-primary" type="submit" data-i18n="action.saveUrl">Save URL</button></div>
+        </form>
+      </section>
+      <section id="settings-view-panel" class="settings-panel settings-panel-padded" role="tabpanel" aria-labelledby="settings-view-tab" data-settings-content="view" hidden>
+        <div class="form-field settings-view-field"><label for="settings-view-select">Result view</label><select id="settings-view-select"><option value="grid">Grid</option><option value="feed">Feed</option><option value="list">List</option></select></div>
+      </section>
+      <section id="settings-folders-panel" class="settings-panel settings-panel-padded" role="tabpanel" aria-labelledby="settings-folders-tab" data-settings-content="folders" hidden>
+        <form id="folder-create-form" class="folder-create-form">
+          <div class="form-field"><label for="folder-create-name" data-i18n="settings.folderName">Name</label><input id="folder-create-name" type="text" maxlength="200" required></div>
+          <div class="form-field"><label for="folder-create-parent" data-i18n="settings.folderParent">Parent</label><select id="folder-create-parent"><option value="">Top level</option></select></div>
+          <button class="button button-primary" type="submit" data-i18n="action.createFolder">Create Folder</button>
+        </form>
+        <p id="folder-manager-error" class="form-error" role="alert"></p>
+        <div id="folder-manager-list" class="folder-manager-list"><p class="detail-empty">Loading…</p></div>
+      </section>
+      <section id="settings-rules-panel" class="settings-panel" role="tabpanel" aria-labelledby="settings-rules-tab" data-settings-content="rules" hidden>
+      <div class="policy-content">
+        <form id="policy-default-form" class="capture-defaults-form">
+          <h3 class="detail-section-title">Defaults</h3>
+          <div class="capture-defaults-grid">
+            <div class="form-field"><label for="policy-default-visibility">Visibility</label><select id="policy-default-visibility"><option value="normal">Normal (local)</option><option value="private">Private</option></select></div>
+            <div class="form-field"><label for="policy-default-storage">Selected images</label><select id="policy-default-storage"><option value="reference_only">Reference</option><option value="local_copy">Local copy</option></select></div>
+            <div class="capture-defaults-actions"><button class="button button-primary" type="submit" data-i18n="action.save">Save</button></div>
+          </div>
+        </form>
+        <section class="capture-rules-section" aria-labelledby="policy-rules-title">
+          <div class="settings-section-heading">
+            <div class="settings-title-group">
+              <h3 id="policy-rules-title" class="detail-section-title">URL rules</h3>
+              <details class="settings-help">
+                <summary aria-label="About URL rules">?</summary>
+                 <p data-i18n="help.urlRules">Rules apply to future saves. Existing Entries change only after Preview/apply.</p>
+              </details>
+            </div>
+             <button id="policy-rule-toggle" class="button button-quiet" type="button" aria-expanded="false" aria-controls="policy-rule-form" data-i18n="action.addUrlRule">Add URL rule</button>
+          </div>
+          <form id="policy-rule-form" class="capture-rule-editor" hidden>
+            <div class="form-field capture-rule-prefix"><label for="policy-rule-prefix">URL prefix</label><input id="policy-rule-prefix" type="url" placeholder="https://example.test/private" required></div>
+             <div class="form-field capture-rule-tags"><div class="field-label-with-help"><label for="policy-rule-tags">Add Tags on future saves</label><details class="settings-help settings-help-inline"><summary aria-label="About future Tags">?</summary><p id="policy-rule-tags-hint" data-i18n="help.ruleTags">Matching new Entries receive these Tags. Existing Tags are never removed.</p></details></div><input id="policy-rule-tags" type="text" placeholder="reference, project-x" aria-describedby="policy-rule-tags-hint"></div>
+            <div class="form-field"><label for="policy-rule-mode" data-i18n="rule.saveMethod">Save method</label><select id="policy-rule-mode"><option value="all" data-i18n="rule.mode.all">All saves</option><option value="page" data-i18n="rule.mode.page">URL save</option><option value="selected_images" data-i18n="rule.mode.selected_images">Image selection</option></select></div>
+            <div class="capture-rule-grid">
+              <div class="form-field"><label for="policy-rule-kind">Content type</label><select id="policy-rule-kind"></select></div>
+              <div class="form-field"><label for="policy-rule-visibility">Visibility</label><select id="policy-rule-visibility"><option value="private">Private</option><option value="normal">Normal (local)</option></select></div>
+            </div>
+            <p id="policy-rule-error" class="form-error" role="alert"></p>
+            <div class="capture-rule-actions"><button class="button button-primary" type="submit" data-i18n="action.addRule">Add rule</button></div>
+          </form>
+          <p id="policy-rule-status" class="form-hint" role="status" aria-live="polite"></p>
+          <div id="policy-rules" class="policy-rule-list"><p class="detail-empty">Loading…</p></div>
+        </section>
+        <p id="policy-error" class="form-error" role="alert"></p>
+      </div>
+      </section>
+      <section id="settings-guide-panel" class="settings-panel" role="tabpanel" aria-labelledby="settings-guide-tab" data-settings-content="guide" hidden>
+        <div class="guide-content">
+          <section class="guide-section">
+            <h3 data-i18n="settings.guideSave">Save links</h3>
+            <p data-i18n="help.guideSave">Add a link in Add URL, or use the Chrome extension to save the current page or selected images. Saving the same URL again preserves its existing title and notes.</p>
+          </section>
+          <section class="guide-section">
+            <h3 data-i18n="settings.guideBrowse">Select and open</h3>
+            <p data-i18n="help.guideDesktop">Click or Space selects; Shift extends the selection. Double-click or Enter opens details. Selection reveals batch actions below search.</p>
+            <p data-i18n="help.guideTouch">On touch screens, tap a card to open details and use its checkbox to select. Actions at the bottom opens batch tools.</p>
+          </section>
+          <section class="guide-section">
+            <h3 data-i18n="settings.guideOrganize">Organize and find</h3>
+            <p data-i18n="help.guideOrganize">Folders are locations you manage; URLs groups links automatically by address. Tags can span several topics. Search and active filters work together; remove a filter chip to broaden the results.</p>
+          </section>
+          <section class="guide-section">
+            <h3 data-i18n="settings.visibilityGuide">Visibility and AI access</h3>
+            <p data-i18n="help.guidePrivacy">Normal Entries stay local; they are not publicly shared. Private Entries are excluded from AI. AI summary processes permitted Normal Entries, with progress in the AI tab.</p>
+          </section>
+        </div>
+      </section>
+      <section id="settings-chrome-panel" class="settings-panel" role="tabpanel" aria-labelledby="settings-chrome-tab" data-settings-content="chrome" hidden>
+      <div class="chrome-content">
+        <div id="chrome-connection-request" class="connection-panel" aria-live="polite" hidden>
+          <h3>Connect this Chrome extension?</h3>
+          <p data-i18n="help.chromePermission">This extension can save the current page and images you explicitly select to this local Registry.</p>
+          <button id="chrome-approve-button" class="button button-primary" type="button" data-i18n="action.approveConnection">Approve connection</button>
+        </div>
+        <p id="chrome-connection-guidance" class="guide-note" data-i18n="help.chromeConnect">Open the Web Bookmark Hub extension and choose “Connect in Web UI” to request access.</p>
+        <section aria-labelledby="chrome-clients-title">
+          <h3 id="chrome-clients-title">Paired clients</h3>
+          <div id="chrome-clients" class="client-list"><p class="sidebar-empty">Loading…</p></div>
+          <button id="chrome-clients-show-all" class="button button-quiet" type="button" hidden>Show all</button>
+        </section>
+        <p id="chrome-error" class="form-error" role="alert"></p>
+      </div>
+      </section>
+      <section id="settings-ai-panel" class="settings-panel settings-panel-padded" role="tabpanel" aria-labelledby="settings-ai-tab" data-settings-content="ai" hidden>
+        <div class="settings-summary-content">
+          <div>
+            <h3 class="detail-section-title" data-i18n="settings.aiTitle">AI URL summaries</h3>
+            <p class="guide-note" data-i18n="help.aiSummary">Summarize untried Normal URLs here, or select specific URLs to retry.</p>
+          </div>
+          <dl class="settings-summary-facts">
+            <div><dt data-i18n="settings.aiModel">Model</dt><dd>gpt-5.6-luna (max)</dd></div>
+            <div><dt data-i18n="settings.aiAvailable">Ready now</dt><dd id="ai-url-summary-count">—</dd></div>
+          </dl>
+          <p id="ai-url-summary-status" class="form-hint" role="status" aria-live="polite"></p>
+          <p id="ai-url-summary-error" class="form-error" role="alert"></p>
+          <div class="dialog-actions settings-summary-actions">
+            <button id="ai-url-summary-start" class="button button-primary" type="button" data-i18n="action.useAiSummary">Use AI for URL summaries</button>
+          </div>
+        </div>
+      </section>
+    </dialog>
+  </body>
+</html>

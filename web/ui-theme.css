@@ -1,0 +1,315 @@
+/* Approved clean retrieval tokens. Structural layout remains in styles.css. */
+:root {
+  --canvas: #fafaf9;
+  --surface: #fff;
+  --surface-muted: #eceeE9;
+  --surface-soft: #f4f4f0;
+  --ink: #272c26;
+  --ink-soft: #686b65;
+  --line: #dedfd9;
+  --line-strong: #c8cac2;
+  --sidebar-width: 240px;
+  --shadow: 0 8px 24px #232a2014;
+  --radius: 4px;
+  --ui-root-font-size: 125%;
+  --ui-font-family: system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ui-type-control: 14px;
+  --ui-type-meta: 12px;
+  --ui-icon-size: 18px;
+  --ui-icon-stroke: 1.75;
+}
+
+ body { line-height:1.55}
+.app-shell { min-height:calc(100vh - 40px)}
+.sidebar { background:#f0f1ed; border-color:#e1e3dc; padding:28px 18px; height:calc(100vh - 40px)}
+.sidebar-nav { gap:26px}
+.nav-label { font-size:13px; font-weight:750; letter-spacing:.02em; padding-left:2px}
+.tree-select-improved { font-size:13px; font-weight:500}
+.tree-count-improved { font-size:11px}
+.tree-node-improved { min-height:35px; padding-right:4px}
+.tree-node-improved.is-active { box-shadow:none; border-color:transparent; background:#dfe2d9; color:#252824}
+.tree-node-improved.is-active:hover { color:#252824; background:#dfe2d9}
+.tree-select-improved { height:35px}
+.tree-node-improved.is-active .tree-select-improved { font-weight:750}
+.tree-collapse-control { color:#797c74}
+.main-content { padding:32px clamp(24px,3.3vw,52px) 56px}
+.results-header { padding-top:10px; padding-bottom:10px}
+.toolbar { gap:8px}
+.button,.toggle-button,.pagination-button { font-size:14px; font-weight:550; min-height:40px}
+.button-primary { background:#292d27; color:#fff; border-color:#292d27; box-shadow:none}
+.button-primary:hover { background:#42493e; color:#fff}
+.button.icon-button.default-view-button,.button.icon-button.filter-button,.button.icon-button.settings-button { border-color:transparent; background:transparent}
+.button.icon-button:hover { background:var(--surface-muted)}
+.icon { width:18px; height:18px; stroke-width:1.6}
+.search-field { position:relative}
+.search-icon { position:absolute; left:13px; top:12px; width:18px; height:18px; fill:none; stroke:#72766c; stroke-width:1.6}
+.search-field input { min-height:42px; font-size:14px; padding:9px 14px 9px 40px; border-color:#d5d8ce; background:#fff}
+.sort-trigger { min-width:104px; border-color:transparent; background:transparent}
+.sort-option { font-size:14px; min-height:40px}
+.sort-option span:last-child { font-size:12px}
+.sort-label { font-size:12px}
+.sort-options { border:0}
+.sort-option { border:0}
+.result-context-slot { height:36px; margin-top:8px}
+.active-filter-chip { font-size:11px; font-weight:500; min-height:26px; border-color:#dedfd9; background:#f0f1eb; border-radius:4px}
+.clear-filters-button { font-size:11px; color:var(--ink-soft)}
+.results-section { padding-top:14px}
+.results-grid { grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-rows:auto; gap:18px}
+.entry-card { border-color:#dedfd7; border-radius:5px; background:#fff}
+.entry-card:hover { box-shadow:0 3px 12px #2528240b; background:#fefefd}
+.entry-card-body { gap:0; padding:19px 19px 13px}
+.entry-card-grid .entry-meta { min-height:30px; margin-bottom:14px; gap:6px; flex-wrap:wrap}
+.entry-meta .entry-source { font-size:11px; font-weight:600; max-width:45%; letter-spacing:0}
+.entry-meta-facts { font-size:10px; gap:6px}
+.entry-date,.entry-kind { font-size:10px}
+.entry-card-external { width:30px; min-width:30px; height:30px; min-height:30px; font-size:17px}
+.entry-card-title { font-size:19px; font-weight:650; letter-spacing:-.6px; line-height:1.5; min-height:0; flex:0 0 auto; margin:0 0 14px!important; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+.entry-card-main { aspect-ratio:auto; container-type:normal; display:block; flex:1; min-height:90px; margin-bottom:18px}
+.entry-card-main[data-card-state=cover] { aspect-ratio:4/3; height:auto; min-height:0; flex:none; overflow:hidden; border-radius:3px}
+.entry-card-grid[data-card-state=cover] .entry-card-body { gap:12px}
+.entry-card-grid[data-card-state=cover] :is(.entry-meta,.entry-card-main,.entry-card-title,.entry-card-footer) { margin:0!important}
+.entry-card-summary { margin:0; color:#73776d; font-size:13px; line-height:1.8; word-break:keep-all; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden}
+.entry-card-main.has-no-summary { min-height:60px}
+.has-no-summary .entry-card-summary { font-size:12px; color:#777b72}
+.entry-card-footer { margin-top:auto; gap:5px; min-height:32px}
+
+.entry-touch-select { display:none; margin-left:auto}
+.entry-select-target { width:32px; min-height:32px}
+.entry-select-checkbox { width:14px; height:14px; accent-color:#33392d}
+.tag { font-size:10px; font-weight:500; padding:3px 7px; border:0; background:#f1f2ec; color:#626859; border-radius:3px; line-height:1.4}
+.entry-card-type-fallback strong { font-size:24px; letter-spacing:-.04em}
+.entry-card.is-private { background:#efefec; border-style:dashed}
+.entry-card.is-private:hover { box-shadow:0 3px 12px #2528240b}
+.batch-bar { font-size:12px}
+.batch-bar .button,.batch-bar select,.batch-bar input { font-size:12px}
+.entry-dialog { border-color:#c9ccc1; border-radius:6px}
+.entry-dialog::backdrop { background:#1e231d70}
+.dialog-header h2 { font-size:20px}
+.settings-tab { font-size:13px}
+.form-field label { font-size:14px}
+.form-field input,.form-field textarea,.form-field select,.folder-manager-row>input,.folder-manager-row>select { font-size:14px}
+.optional { font-size:11px}
+.detail-title { font-size:24px; line-height:1.45}
+.detail-comment,.detail-url { font-size:14px}
+.entry-feed { border-color:#dedfd7}
+.pagination-button { min-width:36px; min-height:36px; font-size:12px}
+.bbs-table { font-size:14px}
+@media(min-width:1700px) { .results-grid { grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:1150px) { .results-grid { grid-template-columns:repeat(2,minmax(0,1fr))}
+.entry-meta .entry-source { max-width:40%}
+}
+@media(max-width:900px) { .sidebar { height:100dvh}
+.main-content { padding:26px 24px 48px}
+}
+@media(max-width:700px) { .main-content { padding:22px 16px 100px}
+.results-grid { grid-template-columns:1fr; gap:14px}
+.entry-card-body { padding:18px 19px 12px}
+.entry-card-main { min-height:0; margin-bottom:12px}
+.entry-card-summary { -webkit-line-clamp:3}
+.entry-card-title { font-size:20px; margin-bottom:10px!important}
+.entry-meta .entry-source { max-width:50%}
+.entry-select-target { width:44px; min-height:44px}
+.entry-select-checkbox { width:18px; height:18px}
+.tag { font-size:11px}
+.results-header { padding-top:0}
+.toolbar { gap:6px}
+.results-section { padding-top:6px}
+.form-field input,.form-field textarea,.folder-create-form select,.folder-manager-row>input,.folder-manager-row>select { font-size:16px}
+}
+@media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; transition:none!important}
+}
+
+/* Readable metadata and width-proportional image stages. */
+.entry-card-title { word-break:keep-all}
+
+.entry-card .cover-image { object-fit:cover; object-position:center}
+.entry-card .preview-image { background:transparent}
+
+.entry-card-summary { font-size:14px; color:#666d61}
+.entry-meta .entry-source { font-size:12px}
+.entry-date,.entry-kind { font-size:11px}
+.entry-meta-facts { flex-wrap:wrap; justify-content:flex-start}
+.entry-card-external { width:36px; min-width:36px; height:36px; min-height:36px}
+.entry-card-main { min-height:100px}
+.entry-card-body { padding:18px}
+.entry-card-footer { margin-top:0}
+.tag { font-size:11px}
+.clear-filters-button { margin-left:0}
+.active-filter-chips { flex:0 0 auto}
+.tree-select-improved { font-size:14px}
+.tree-count-improved { font-size:12px}
+@media(max-width:700px) { .entry-card-main { min-height:0}
+
+.entry-meta .entry-source { font-size:13px}
+.entry-date,.entry-kind { font-size:12px}
+.entry-card-summary { font-size:15px}
+.entry-card-external { width:44px; height:44px}
+.tag { font-size:12px}
+}
+
+.detail-content { gap:16px; padding:22px 24px}
+.detail-stage-summary { min-height:0; max-height:none; padding:0; font-size:16px; line-height:1.85; display:block}
+.detail-stage-type { min-height:80px; font-size:24px}
+.detail-identity { margin-top:2px}
+.detail-title { word-break:keep-all}
+.detail-content .tags { margin:0}
+.detail-content-actions { margin-top:4px}
+.detail-source { font-size:14px}
+.detail-kind,.detail-saved { font-size:12px}
+.detail-dialog { max-width:680px}
+.entry-card-summary { letter-spacing:-.1px}
+
+.button.icon-button.filter-button.is-active { color:var(--ink); background:var(--surface-muted)}
+
+/* Shared clean retrieval theme. Layout and component behavior remain in styles.css. */
+
+body,button,input,select,textarea,option,.detail-title,.preview,.sort-option,.tag { font-family:var(--ui-font-family)}
+
+.app-shell { min-height:100vh}
+.sidebar { height:100vh; padding-top:24px}
+.main-content { padding-top:24px}
+.results-header { padding-top:0}
+.sidebar-nav { gap:24px}
+
+.nav-label { display:flex; align-items:center; gap:7px; font-size:13px}
+.nav-label::before { display:none}
+.nav-label>[data-icon] .icon { width:14px; height:14px}
+.nav-group[open]>.nav-label>[data-icon] .icon { transform:rotate(90deg)}
+
+.icon,.search-icon,.detail-content-actions .icon,.detail-dialog-close .icon { width:var(--ui-icon-size); height:var(--ui-icon-size); fill:none; stroke:currentColor; stroke-width:var(--ui-icon-stroke); stroke-linecap:round; stroke-linejoin:round; flex:none}
+
+span[data-icon] { display:inline-flex; align-items:center; justify-content:center}
+.icon-button,.entry-card-external { display:inline-flex; align-items:center; justify-content:center}
+
+.detail-content[data-presentation-group="code"] .detail-title { font-family:var(--ui-font-family)}
+
+.button,.sort-option,.settings-tab,input,select,textarea { font-weight:500; letter-spacing:0}
+.button,.sort-option,.settings-tab { font-size:var(--ui-type-control)}
+
+.tag,.entry-source,.entry-date,.entry-kind,.tree-count-improved { font-size:var(--ui-type-meta)}
+
+.entry-card-title { font-weight:650}
+.entry-title[data-tooltip]::after { font-family:var(--ui-font-family)}
+
+.sidebar-mobile-close { position:absolute; top:12px; right:12px}
+.active-filter-summary { min-width:104px; flex:1 1 104px; max-width:100%}
+.active-filter-chip { white-space:nowrap}
+
+.batch-bar:not([hidden]) { display:flex; gap:12px; flex:0 0 auto; max-width:none; min-height:40px; overflow:visible; margin-left:auto; padding:0; background:transparent}
+
+.selection-summary,.selection-actions { display:flex; gap:4px; align-items:center; flex:none}
+.selection-summary { gap:8px}
+.batch-select-all { font-size:13px; font-weight:600; gap:7px; white-space:nowrap; margin:0}
+.batch-select-all input { min-height:0}
+.batch-select-all span { font-size:13px; font-weight:600}
+
+.selection-actions>.button { display:inline-flex; align-items:center; gap:6px; padding:5px 8px; font-size:13px; white-space:nowrap; min-height:36px}
+.selection-actions>.icon-button { width:36px; min-width:36px; padding:0}
+.selection-actions>.button[aria-expanded=true] { background:var(--surface-muted)}
+
+#batch-select-results { font-size:12px; color:var(--ink-soft); padding:4px 5px; white-space:nowrap}
+#batch-done { margin-left:2px}
+
+.selection-menu,.selection-editor { position:fixed; inset:auto; margin:0; color:var(--ink); background:var(--surface); border:1px solid #d4d8ce; border-radius:7px; box-shadow:0 8px 24px #232a2014; max-height:calc(100dvh - 24px); overflow:auto; font-size:14px}
+
+.selection-menu { width:220px; padding:6px}
+.selection-menu button { display:flex; align-items:center; gap:10px; width:100%; min-height:40px; padding:8px 10px; border:0; border-radius:4px; background:transparent; color:var(--ink); font-size:14px; text-align:left}
+.selection-menu button:hover { background:var(--surface-soft)}
+.selection-menu .selection-delete { color:#953f36; margin-top:4px}
+
+.selection-editor { width:320px; padding:14px; display:grid; gap:12px}
+.selection-editor[popover]:not(:popover-open),.selection-editor[hidden] { display:none}
+.selection-editor-heading { display:flex; align-items:center; justify-content:space-between; gap:12px}
+.selection-editor-heading h2 { margin:0; font-size:15px; font-weight:650; letter-spacing:0}
+.selection-editor-heading .icon-button { width:32px; min-width:32px; height:32px; min-height:32px}
+
+.batch-bar .selection-editor select,.batch-bar .selection-editor input[type=text] { width:100%; min-width:0; max-width:100%; min-height:40px; font-size:14px; padding:8px 10px; border-color:#d4d8ce; background:var(--surface); border-radius:4px}
+
+.selection-editor .batch-actions { justify-content:flex-end}
+.selection-editor .batch-value-label { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap}
+.selection-editor .button-primary { min-height:36px; font-size:13px; padding:6px 13px}
+
+#batch-delete-hint { margin:0; font-size:13px; line-height:1.65; color:var(--ink-soft)}
+#batch-editor-feedback { margin:0; font-size:12px; line-height:1.6}
+#batch-editor-feedback:empty { display:none}
+#batch-editor-feedback[data-tone=error] { color:#953f36}
+.button-primary.is-destructive { background:#953f36; border-color:#953f36; color:white}
+
+#batch-operation[hidden] { display:none}
+.batch-operation-label { display:none}
+
+input[type=checkbox] { width:16px; height:16px; min-height:16px; accent-color:#454d3f; border-radius:3px}
+
+.entry-dialog { box-shadow:0 12px 40px #20261d1c}
+.sort-popover { box-shadow:0 8px 24px #232a2014}
+.sort-trigger { display:inline-flex; align-items:center; justify-content:center; gap:8px}
+.sort-trigger .icon { width:14px; height:14px}
+
+@media(min-width:701px) and (max-width:1150px) { .batch-bar:not([hidden]) { gap:5px}
+.selection-summary { gap:4px}
+.selection-actions>.button { padding-inline:5px}
+.selection-actions { gap:0}
+#batch-select-results { font-size:11px}
+.active-filter-summary { min-width:80px; flex-basis:80px}
+.clear-filters-button { padding-inline:4px}
+}
+
+@media(max-width:900px) { .sidebar { padding-top:54px; height:100dvh}
+.main-content { padding-top:22px}
+}
+
+@media(max-width:700px) { .main-content { padding-top:16px}
+.result-context-slot { overflow:hidden}
+.batch-dialog .batch-bar:not([hidden]) { display:flex; flex-direction:column; align-items:stretch; gap:12px; width:100%; max-width:100%; padding:0}
+.batch-dialog .selection-summary { justify-content:space-between}
+.batch-dialog .selection-actions { display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:3px}
+.batch-dialog .selection-actions>.button { font-size:13px; justify-content:center; min-height:44px}
+.batch-dialog #batch-done { order:0}
+.batch-dialog .selection-editor { position:static; inset:auto; width:100%; max-height:none; margin:0; padding:12px 0 0; border:0; border-radius:0; box-shadow:none; overflow:visible}
+.batch-dialog .selection-editor-heading h2 { font-size:14px}
+.batch-dialog .batch-actions { justify-content:flex-end}
+.batch-dialog .selection-editor .batch-value-label { position:absolute; width:1px; height:1px; margin:-1px; clip:rect(0,0,0,0); overflow:hidden}
+.batch-dialog .selection-editor select,.batch-dialog .selection-editor input[type=text] { font-size:16px; min-height:44px}
+.batch-dialog .selection-editor .button-primary { min-height:40px}
+.batch-dialog .selection-editor .batch-operation-label { display:none}
+.batch-dialog .dialog-header h2 { font-size:16px}
+.batch-dialog .dialog-header .icon-button { font-size:14px}
+.batch-dialog .dialog-header { padding-block:12px}
+.mobile-selection { font-size:14px}
+.mobile-selection .button { font-size:13px}
+.entry-card-external { width:44px; height:44px}
+input[type=checkbox] { width:18px; height:18px}
+.selection-menu { max-width:calc(100vw - 24px)}
+}
+
+.is-managing :is(.entry-card,.entry-feed)[aria-selected="true"],.is-managing :is(.entry-card,.entry-feed)[aria-selected="true"]:hover { outline:none; border-color:#626c58; box-shadow:inset 0 0 0 1px #626c58; background:#f0f3ec}
+.is-managing :is(.entry-card,.entry-feed)[aria-selected="true"]:focus-visible { outline:2px solid #626c58; outline-offset:3px}
+.active-filter-chip { display:inline-flex; align-items:center; gap:5px}
+.active-filter-chip>.icon { width:12px; height:12px}
+.sort-option span:last-child { display:inline-flex; align-items:center; gap:6px}
+.sort-option span:last-child .icon { width:14px; height:14px}
+
+[data-tooltip]::after { border:0; border-radius:4px; box-shadow:0 3px 10px #232a2014; font-family:var(--ui-font-family); font-size:12px; font-weight:500}
+.button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline-width:2px}
+@media(max-width:700px) { .batch-dialog #batch-done { font-size:12px; width:auto; padding-inline:6px}
+.batch-dialog .selection-editor .batch-value-label:not([hidden]) { display:block; position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important}
+}
+
+@media(max-width:700px) and (any-pointer:coarse) { .entry-touch-select { display:inline-flex}
+}
+
+.entry-feed[aria-selected="true"] .entry-title,.entry-feed[aria-selected="true"] .entry-meta,.entry-feed[aria-selected="true"] .tag { color:var(--ink)}
+
+/* Native modal surfaces stay inside the viewport even after reading scroll. */
+.entry-dialog { position: fixed; }
+.tag-suggestion-list, .settings-help > p { box-shadow: var(--shadow); border-color: var(--line); border-radius: var(--radius); }
+@media (max-width: 700px) {
+  #batch-editor-feedback { display: none; }
+}
+
+/* Settings editors share control sizing and simple content-aligned rows. */
+.folder-manager-facts { color:var(--ink-soft); font-size:12px}
+.folder-manager-actions .button { font-size:13px}
+.guide-section h3 { margin:0; font-size:15px; font-weight:650; letter-spacing:0}
+.guide-section p { margin:0; color:var(--ink-soft); font-size:14px; line-height:1.7; word-break:keep-all; overflow-wrap:anywhere}

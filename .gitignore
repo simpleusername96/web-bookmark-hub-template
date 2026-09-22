@@ -1,0 +1,42 @@
+# Dependencies and local tooling
+node_modules/
+.chrome-*/
+work/
+*.log
+*.tmp
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+
+# Collected content and runtime data
+agent-data/
+data/
+outputs/
+captures/
+raw-templates/
+runtime-data/
+.web-bookmark-hub/
+registry-data/
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite.data/
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+*.sqlite3.data/
+*.db-journal
+*.db-wal
+*.db-shm
+*.db.data/
+
+# Ad-hoc evidence and screenshots
+tmp-*
+20??-??-??*.png
+
+.public-export-owner

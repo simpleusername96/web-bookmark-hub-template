@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Bookmark Hub</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="header">
+        <h1>Web Bookmark Hub</h1>
+        <p id="tab-url" class="subtle">현재 탭 정보를 불러오는 중이에요…</p>
+      </header>
+
+      <section class="primaryActions" aria-label="저장 방법">
+        <button id="save-tab" class="primary" type="button">현재 페이지 저장</button>
+        <button id="start-selection" type="button">페이지에서 이미지 선택</button>
+      </section>
+
+      <section id="selection-panel" class="selectionPanel" aria-label="여러 이미지 선택" hidden>
+        <div class="selectionHeader">
+          <div class="selectionHeading">
+            <strong id="selection-summary">선택 모드</strong>
+            <details class="selectionHelp">
+              <summary aria-label="이미지 선택 도움말">?</summary>
+              <p>페이지에서 저장할 이미지의 Save 버튼을 누르세요.</p>
+            </details>
+          </div>
+          <div id="selection-controls" class="selectionControls">
+            <button id="refresh-selection" class="quietAction iconAction" type="button" aria-label="다시 찾기" data-tooltip="다시 찾기"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6v6h-6M4 18v-6h6M18.5 9A7 7 0 0 0 6 7.5L4 12M5.5 15A7 7 0 0 0 18 16.5l2-4.5"></path></svg></button>
+            <button id="stop-selection" class="quietAction iconAction" type="button" aria-label="선택 종료" data-tooltip="선택 종료"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19"></path></svg></button>
+          </div>
+        </div>
+
+        <details id="preview-panel" class="preview" hidden>
+          <summary>선택 항목 보기</summary>
+          <div class="previewHeader">
+            <span></span>
+            <button id="clear-selection" class="subtleAction" type="button">선택 지우기</button>
+          </div>
+          <ul id="preview-list" class="previewList"></ul>
+          <p id="preview-empty" class="hint">아직 선택된 항목이 없어요.</p>
+        </details>
+
+        <button id="save-selection" class="primary selectionSave" type="button">선택 항목 저장</button>
+      </section>
+
+      <details id="capture-settings" class="settings">
+        <summary>저장 옵션</summary>
+        <div class="formStack">
+          <label>메모 <span>선택</span><textarea id="note" rows="2" maxlength="20000"></textarea></label>
+          <label>태그 <span id="tags-hint">쉼표로 구분</span><input id="tags" type="text" placeholder="reference, visual"></label>
+          <label>Folder<select id="folder"><option value="">없음</option></select></label>
+          <label>공개 범위<select id="capture-visibility">
+            <option value="default">Registry 규칙 사용</option>
+            <option value="normal">Normal</option>
+            <option value="private">Private</option>
+          </select></label>
+          <p class="hint">선택하지 않은 항목은 Registry의 도메인·경로 규칙을 사용해요.</p>
+        </div>
+      </details>
+
+      <section id="pairing-panel" class="settings connection" aria-label="Registry 연결">
+        <p id="connection-status" class="hint">연결 상태 확인 중…</p>
+        <button id="connect-registry" class="primary" type="button">Web UI에서 연결</button>
+      </section>
+
+      <p class="message"><span id="message" role="status" aria-live="polite"></span> <a id="result-entry" class="resultEntry" target="_blank" rel="noopener noreferrer" hidden>바로가기</a></p>
+    </main>
+    <script src="extension/capture-tag-suggestions.js"></script>
+    <script src="web/tag-suggestions.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
