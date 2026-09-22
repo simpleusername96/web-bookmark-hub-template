@@ -1,7 +1,7 @@
 # Agent instructions
 
 - Read `docs/PROJECT.md` before changing files.
-- For setup and first use, read `docs/SETUP.md`, prepare the environment and guide Chrome installation. Ask what the user wants to build from the template; keep that purpose ahead of preserving the sample workflow.
+- For setup, use or customization, read `docs/CODEX_GUIDE.md` for the feature inventory, rationale, rule layers, code owners and existing CLI commands; use `docs/SETUP.md` for environment preparation and Chrome installation. Follow the purpose already supplied by the user and ask only for material missing requirements.
 - Keep user URLs, database rows, downloaded content, tokens and browser state out of Git. Local runtime data belongs only under ignored `data/`.
 - Use `.agents/skills/enrich-links/SKILL.md` for user-authorized link enrichment or organization. Private entries must not be read or enriched by supported AI workflows.
 - Keep original URLs and authored notes. Do not archive remote page bodies or unselected media.

@@ -1,6 +1,6 @@
 # Setup reference
 
-Use this reference when preparing a user's copy in Codex. Read `docs/PROJECT.md` for data and behavior boundaries. Ask about the intended use, then adapt the template to that use.
+Use this reference when preparing a user's copy in Codex. Read `docs/PROJECT.md` for data and behavior boundaries and [CODEX_GUIDE.md](CODEX_GUIDE.md) for available features, their purpose, rules and customization points. Use the purpose already supplied by the user; clarify only material gaps.
 
 ## Runtime
 

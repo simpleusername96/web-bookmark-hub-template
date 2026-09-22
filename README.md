@@ -1,30 +1,60 @@
 # Web Bookmark Hub
 
-English · [한국어](README.ko.md)
+한국어 · [English](README.en.md)
 
-A guide and template for people who save information from many different places.
-Use Codex to pick the parts you need and adapt them to your own workflow.
+다양한 곳에서 정보를 저장하는 사람들을 위한 가이드라인이자 템플릿입니다.
+Codex와 함께 필요한 기능만 골라, 사용 목적에 맞게 수정해 사용하세요.
 
-## Key features
+## 주요 기능
 
-**1. Save web sources** — Click **현재 페이지 저장** (Save current page) in the Chrome extension. **Ctrl+Shift+E** also starts Codex organization.
+### 1. 읽던 웹페이지 저장
 
-![Save the page you are reading in Chrome](docs/images/extension-save.png)
+블로그 글, arXiv 논문, X·LinkedIn 게시물처럼 여러 곳의 URL을 한곳에 모읍니다. Chrome 확장 프로그램에서 **현재 페이지 저장**을 누르거나 **Ctrl+Shift+E**를 사용합니다.
 
-**2. Organize with Codex** — Keep a title, summary, and representative image or page snapshot. Open a card to review the summary and original source.
+단축키는 URL을 먼저 저장하고, AI 처리를 허용한 **Normal** 자료에 요약이 없으면 정리도 시작합니다. 확장 패널의 저장 버튼은 URL만 저장하며, 나중에 앱에서 **AI summary**를 실행할 수 있습니다.
 
-![Review the saved source and summary](docs/images/summary-en.png)
+![Chrome에서 읽던 페이지 저장](docs/images/extension-save.png)
 
-**3. Sort into folders and tags** — Select sources → **Tags** or **More → Move to Folder** → **Apply**.
+### 2. 제목·요약·썸네일로 정리
 
-![Move selected sources into a folder](docs/images/organize-en.png)
+현재 자동 정리는 **Luna (`gpt-5.6-luna`) / reasoning effort `max`**를 사용합니다. 저장한 URL의 페이지 제목·본문·논문 초록 등에서 확인한 근거로 다음 기준을 적용합니다.
 
-**4. Find sources again** — Combine search terms, folders and tags.
+- **제목:** 무엇을 다루는 자료인지 짧고 구체적으로 씁니다. 이미 작성한 제목은 유지합니다.
+- **요약:** 해당 글이나 게시물의 핵심을 한국어 한 문장(20–240자)으로 정리합니다. 확인하지 못한 사실은 덧붙이지 않습니다.
+- **썸네일:** 앱이 해당 자료의 대표 이미지나 영상 포스터를 가져옵니다. 기존 로컬 이미지를 우선하며, 단축키로 저장할 때 이미지 후보가 없으면 페이지 스냅샷을 사용합니다.
 
-![Search within a folder](docs/images/search-en.png)
+제목·요약 기준은 [요약 프롬프트](enrichment/ai-summary-prompt.md)에 맞춰 자신의 용도로 바꿀 수 있습니다. 이미지 선택 방식의 수정 위치는 [Codex 가이드](docs/CODEX_GUIDE.md)에 정리되어 있습니다.
 
-## Get started
+![저장한 자료의 이미지와 요약 확인](docs/images/summary-ko.png)
 
-Choose **Use this template**, then ask Codex: “Read docs/SETUP.md, prepare the app and Chrome extension, and help me adapt this project for [my use case].”
+### 3. 웹사이트별 저장 규칙
 
-[Setup](docs/SETUP.md) · [MIT](LICENSE)
+앱의 **Rules**에서 사이트와 URL 경로별로 자료 유형, 기본 태그, AI 처리 허용 여부를 정합니다. 예를 들어 arXiv의 논문 페이지는 **Research + paper**, X·LinkedIn 게시물은 **Post + ideas**로 저장하도록 설정할 수 있습니다.
+
+페이지 저장과 선택 이미지 저장에 서로 다른 규칙을 둘 수도 있습니다. 기존 자료에 적용하려면 변경 대상을 미리 확인한 뒤 적용합니다. 사이트별로 어떤 본문·이미지를 가져올지는 Codex와 추출 코드를 수정할 수 있습니다.
+
+### 4. 폴더·태그로 분류
+
+폴더로 자료를 묶고, 태그로 주제를 겹쳐 표시합니다. 여러 카드를 선택한 뒤 **Tags**, 또는 **더 보기 → Folder로 이동 → 적용**으로 한꺼번에 정리할 수 있습니다.
+
+사이트 규칙의 기본 태그 외에, 폴더·태그 재분류는 직접 하거나 원하는 기준을 Codex에 요청합니다.
+
+![자료를 선택해 폴더로 이동](docs/images/organize-ko.png)
+
+### 5. 필요한 자료 다시 찾기
+
+검색어에 폴더·태그·자료 유형 필터를 함께 적용합니다. 이미지로 훑어보거나 목록으로 찾은 뒤, 카드를 열어 요약·메모를 확인하고 원문으로 돌아갈 수 있습니다.
+
+![폴더 안에서 검색한 자료](docs/images/search-ko.png)
+
+## 시작하기
+
+Codex에 이 GitHub 링크와 필요한 기능을 함께 전달하세요.
+
+> https://github.com/simpleusername96/web-bookmark-hub-template
+>
+> 이 프로젝트를 기반으로 [나의 용도]에 맞는 자료함을 만들어줘. AGENTS.md와 docs/CODEX_GUIDE.md를 읽고, [필요한 기능]만 골라 수정해줘. 로컬 실행과 Chrome 확장 프로그램 연결도 준비해줘.
+
+AI 자동 정리는 로그인한 Codex CLI가 필요합니다. 새 자료함은 **Private**이 기본이므로, 사용할 사이트의 규칙이나 **Rules → Defaults**를 **Normal**로 설정해야 AI가 처리합니다.
+
+[Codex 가이드: 기능·설계 이유·수정 위치](docs/CODEX_GUIDE.md) · [설정 안내](docs/SETUP.md) · [MIT](LICENSE)

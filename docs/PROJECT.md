@@ -30,4 +30,4 @@ MCP, watched sources, scheduled feed discovery and hosted multi-user service are
 
 Node.js 24.19.0 or later; no app npm dependencies. Use CommonJS on Node and the existing browser module pattern. `node scripts/verify.js` checks the manifest, maintained JavaScript and tests. Use synthetic test fixtures. Chrome extension behavior still requires manual browser verification.
 
-README files own the concise template introduction and user controls. `docs/SETUP.md` owns the setup reference for Codex-assisted onboarding. This document owns the product and responsibility boundaries; update it when an accepted change changes those boundaries.
+`README.md` owns the Korean-first template introduction, feature explanations and user controls; `README.en.md` is the English counterpart. `docs/CODEX_GUIDE.md` owns the agent-facing feature rationale, customization map, rule layers and CLI reference. `docs/SETUP.md` owns the setup reference for Codex-assisted onboarding. This document owns the product and responsibility boundaries; update it when an accepted change changes those boundaries.
