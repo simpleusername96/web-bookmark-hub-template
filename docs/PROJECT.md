@@ -10,7 +10,7 @@ Web Bookmark Hub is a local, private index of web pointers shared by a person an
 - `extension/`, `profiles.js`, `content-script.js`, `popup.*` and `service-worker.js` own explicit current-page and selected-image capture. Site templates discover candidates; they do not author privacy or storage policy.
 - `enrichment/` owns bounded link extraction and the Codex summary prompt. Local agent CRUD is a convenience path; it is not host isolation. See `docs/project/ENRICHMENT.md`.
 - `examples/` and `scripts/seed-demo.js` own invented sample records and generated covers. Sample URLs use reserved test domains, and sample summaries are fixtures. No owner collection is included.
-- `docs/images/{reading,summary,library}-{ko,en}.png` are approved introduction screenshots of isolated fictional data. Their summaries and folder/tag assignments are authored examples disclosed in both READMEs; they are not evidence of live AI execution or site compatibility. This does not authorize publishing user collections or runtime captures.
+- `docs/images/{reading,summary,library}-{ko,en}.png` and `docs/images/extension-{connect,save,saved}.png` show the unchanged production app and native extension with isolated dummy data. The extension pairing and URL save are real; summaries and folder/tag assignments are authored fixtures, and the blog's cover is generated artwork. No live model call or named-platform compatibility test is represented. This does not authorize publishing user collections or runtime captures.
 
 ## Invariants
 
@@ -30,4 +30,4 @@ MCP, watched sources, scheduled feed discovery and hosted multi-user service are
 
 Node.js 24.19.0 or later; no app npm dependencies. Use CommonJS on Node and the existing browser module pattern. `node scripts/verify.js` checks the manifest, maintained JavaScript and tests. Use synthetic test fixtures. Chrome extension behavior still requires manual browser verification.
 
-README files own human setup instructions. This document owns the product and responsibility boundaries; update it when an accepted change changes those boundaries.
+README files own the concise template introduction and user controls. `docs/SETUP.md` owns the setup reference for Codex-assisted onboarding. This document owns the product and responsibility boundaries; update it when an accepted change changes those boundaries.
