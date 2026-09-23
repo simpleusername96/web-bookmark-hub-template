@@ -20,7 +20,7 @@ test("v15 entries and child references survive AI title-origin migration", () =>
   try {
     raw = new DatabaseSync(dbPath);
     raw.exec(SCHEMA_SQL
-      .replace("web-bookmark-hub/registry/v17", "web-bookmark-hub/registry/v15")
+      .replace("web-bookmark-hub/registry/v18", "web-bookmark-hub/registry/v15")
       .replace("'none','user','page','capture_caption','ai'", "'none','user','page','capture_caption'"));
     raw.exec("PRAGMA user_version = 15");
     const insert = raw.prepare(`
@@ -39,7 +39,7 @@ test("v15 entries and child references survive AI title-origin migration", () =>
     raw = null;
 
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     assert.equal(getEntry(registry, 1).title_origin, "user");
     assert.equal(listComments(registry, 1).items[0].body, "User note");
     assert.equal(registry.db.prepare("PRAGMA foreign_key_check").all().length, 0);

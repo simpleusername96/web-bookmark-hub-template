@@ -56,10 +56,10 @@ test("a real v3 Registry migrates to the current schema with a system baseline a
     const dbPath = path.join(directory, "registry.sqlite3");
     createV3Fixture(dbPath);
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     assert.equal(
       registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value,
-      "web-bookmark-hub/registry/v17"
+      "web-bookmark-hub/registry/v18"
     );
     assert.deepEqual(
       { ...registry.db.prepare("SELECT action, actor_type, actor_id FROM entry_revisions WHERE entry_id = 1").get() },

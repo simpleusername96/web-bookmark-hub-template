@@ -132,8 +132,8 @@ test("fresh current schema exposes capture provenance, revision, policy, API cli
   let registry;
   try {
     registry = openRegistry({ dbPath: path.join(directory, "registry.sqlite3") });
-    assert.equal(SCHEMA_VERSION, 17);
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(SCHEMA_VERSION, 18);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     const entryColumns = registry.db.prepare("PRAGMA table_info(entries)").all().map((row) => row.name);
     assert.deepEqual(
       ["created_via", "capture_adapter", "capture_request_id", "capture_item_index"].filter((name) => !entryColumns.includes(name)),
@@ -159,8 +159,8 @@ test("a real v2 registry migrates to the current schema without changing Registr
     const dbPath = path.join(directory, "registry.sqlite3");
     createV2Fixture(dbPath);
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
-    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v17");
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
+    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v18");
     const migrated = registry.db.prepare("SELECT id, folder_id, content_focus, created_via FROM entries").get();
     assert.deepEqual(
       [migrated.id, migrated.folder_id, migrated.content_focus, migrated.created_via],

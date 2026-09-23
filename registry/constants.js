@@ -28,7 +28,7 @@ const CONTENT_FOCUS_VALUES = Object.freeze(['text', 'visual']);
 const DEFAULT_CONTENT_FOCUS = 'text';
 const ENTRY_CREATION_CHANNELS = Object.freeze(['legacy', 'cli', 'web', 'chrome', 'manifest_import']);
 
-const SUMMARY_MODEL = 'gpt-5.6-luna';
+const SUMMARY_MODEL = 'gpt-6-luna';
 const SUMMARY_REASONING_EFFORT = 'max';
 
 const DEFAULT_POLICY = Object.freeze({

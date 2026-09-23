@@ -19,10 +19,10 @@ test("schema v12 migrates to rule-tag relations in schema v13", () => {
     registry.close();
 
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     assert.equal(
       registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value,
-      "web-bookmark-hub/registry/v17"
+      "web-bookmark-hub/registry/v18"
     );
     assert.deepEqual(
       registry.db.prepare("PRAGMA table_info(capture_policy_rule_tags)").all().map((row) => row.name),

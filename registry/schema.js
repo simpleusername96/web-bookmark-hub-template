@@ -3,8 +3,9 @@
 const { RegistryError } = require("./errors");
 const { ENTRY_KINDS } = require("./constants.js");
 
-const SCHEMA_VERSION = 17;
-const SCHEMA_ID = "web-bookmark-hub/registry/v17";
+const SCHEMA_VERSION = 18;
+const SCHEMA_ID = "web-bookmark-hub/registry/v18";
+const V17_SCHEMA_ID = "web-bookmark-hub/registry/v17";
 const V16_SCHEMA_ID = "web-bookmark-hub/registry/v16";
 const V15_SCHEMA_ID = "web-bookmark-hub/registry/v15";
 const V14_SCHEMA_ID = "web-bookmark-hub/registry/v14";
@@ -443,7 +444,7 @@ CREATE TABLE IF NOT EXISTS summary_jobs (
   id INTEGER PRIMARY KEY,
   entry_id INTEGER NOT NULL REFERENCES entries(id) ON DELETE CASCADE,
   status TEXT NOT NULL CHECK(status IN ('queued','running','completed','failed','cancelled')),
-  model TEXT NOT NULL CHECK(model = 'gpt-5.6-luna'),
+  model TEXT NOT NULL CHECK(model IN ('gpt-5.6-luna','gpt-6-luna')),
   reasoning_effort TEXT NOT NULL CHECK(reasoning_effort = 'max'),
   input_sha256 TEXT NOT NULL,
   input_fields_json TEXT NOT NULL
@@ -461,7 +462,7 @@ CREATE TABLE IF NOT EXISTS summaries (
   entry_id INTEGER NOT NULL REFERENCES entries(id) ON DELETE CASCADE,
   job_id INTEGER NOT NULL UNIQUE REFERENCES summary_jobs(id) ON DELETE CASCADE,
   summary_text TEXT NOT NULL,
-  model TEXT NOT NULL CHECK(model = 'gpt-5.6-luna'),
+  model TEXT NOT NULL CHECK(model IN ('gpt-5.6-luna','gpt-6-luna')),
   reasoning_effort TEXT NOT NULL CHECK(reasoning_effort = 'max'),
   input_sha256 TEXT NOT NULL,
   created_at TEXT NOT NULL
@@ -597,6 +598,10 @@ function initializeSchema(db, transaction) {
   }
   if (version === 16) {
     migrateV16ToV17(db, transaction);
+    return;
+  }
+  if (version === 17) {
+    migrateV17ToV18(db, transaction);
     return;
   }
   validateSchema(db);
@@ -1391,13 +1396,71 @@ function migrateV16ToV17(db, transaction) {
         FROM summary_jobs
         WHERE requested_by IN ('ai-url-summary', 'ai-url-summary-backfill');
       `);
-      db.prepare("UPDATE registry_meta SET value = ? WHERE key = 'schema_id'").run(SCHEMA_ID);
+      db.prepare("UPDATE registry_meta SET value = ? WHERE key = 'schema_id'").run(V17_SCHEMA_ID);
       db.exec("PRAGMA user_version = 17");
-      validateSchema(db);
+      validateSchema(db, 17);
     });
   } catch (error) {
     if (error instanceof RegistryError) throw error;
     throw new RegistryError("DATABASE_MIGRATION_FAILED", "Database schema migration failed.");
+  }
+  migrateV17ToV18(db, transaction);
+}
+
+function migrateV17ToV18(db, transaction) {
+  let foreignKeysDisabled = false;
+  try {
+    validateSchema(db, 17);
+    db.exec("PRAGMA foreign_keys = OFF");
+    foreignKeysDisabled = true;
+    transaction(db, () => {
+      db.exec("PRAGMA legacy_alter_table = ON");
+      db.exec("ALTER TABLE summaries RENAME TO summaries_v17");
+      db.exec("ALTER TABLE summary_jobs RENAME TO summary_jobs_v17");
+      db.exec(`
+        CREATE TABLE summary_jobs (
+          id INTEGER PRIMARY KEY,
+          entry_id INTEGER NOT NULL REFERENCES entries(id) ON DELETE CASCADE,
+          status TEXT NOT NULL CHECK(status IN ('queued','running','completed','failed','cancelled')),
+          model TEXT NOT NULL CHECK(model IN ('gpt-5.6-luna','gpt-6-luna')),
+          reasoning_effort TEXT NOT NULL CHECK(reasoning_effort = 'max'),
+          input_sha256 TEXT NOT NULL,
+          input_fields_json TEXT NOT NULL CHECK(json_valid(input_fields_json) AND json_type(input_fields_json) = 'array'),
+          policy_snapshot_json TEXT NOT NULL CHECK(json_valid(policy_snapshot_json) AND json_type(policy_snapshot_json) = 'object'),
+          requested_by TEXT NOT NULL,
+          requested_at TEXT NOT NULL,
+          completed_at TEXT,
+          failure_code TEXT
+        );
+        INSERT INTO summary_jobs SELECT * FROM summary_jobs_v17;
+        CREATE TABLE summaries (
+          id INTEGER PRIMARY KEY,
+          entry_id INTEGER NOT NULL REFERENCES entries(id) ON DELETE CASCADE,
+          job_id INTEGER NOT NULL UNIQUE REFERENCES summary_jobs(id) ON DELETE CASCADE,
+          summary_text TEXT NOT NULL,
+          model TEXT NOT NULL CHECK(model IN ('gpt-5.6-luna','gpt-6-luna')),
+          reasoning_effort TEXT NOT NULL CHECK(reasoning_effort = 'max'),
+          input_sha256 TEXT NOT NULL,
+          created_at TEXT NOT NULL
+        );
+        INSERT INTO summaries SELECT * FROM summaries_v17;
+        DROP TABLE summaries_v17;
+        DROP TABLE summary_jobs_v17;
+        CREATE INDEX summary_jobs_entry_id_requested_at_idx ON summary_jobs(entry_id, requested_at DESC, id DESC);
+      `);
+      db.prepare("UPDATE registry_meta SET value = ? WHERE key = 'schema_id'").run(SCHEMA_ID);
+      db.exec("PRAGMA user_version = 18");
+      validateSchema(db);
+      if (db.prepare("PRAGMA foreign_key_check").all().length) {
+        throw new RegistryError("DATABASE_MIGRATION_FAILED", "Database foreign keys failed after migration.");
+      }
+    });
+  } catch (error) {
+    if (error instanceof RegistryError) throw error;
+    throw new RegistryError("DATABASE_MIGRATION_FAILED", "Database schema migration failed.");
+  } finally {
+    db.exec("PRAGMA legacy_alter_table = OFF");
+    if (foreignKeysDisabled) db.exec("PRAGMA foreign_keys = ON");
   }
 }
 
@@ -1433,7 +1496,7 @@ function validateSchema(db, version = SCHEMA_VERSION) {
       "entries_canonical_url_unique_insert", "entries_canonical_url_unique_update"
     ];
   const triggerNames = new Set(db.prepare("SELECT name FROM sqlite_master WHERE type = 'trigger'").all().map((row) => row.name));
-  const expectedSchemaId = version === 16 ? V16_SCHEMA_ID : version === 15 ? V15_SCHEMA_ID : version === 14 ? V14_SCHEMA_ID : version === 13 ? V13_SCHEMA_ID : version === 1
+  const expectedSchemaId = version === 17 ? V17_SCHEMA_ID : version === 16 ? V16_SCHEMA_ID : version === 15 ? V15_SCHEMA_ID : version === 14 ? V14_SCHEMA_ID : version === 13 ? V13_SCHEMA_ID : version === 1
     ? V1_SCHEMA_ID
     : (version === 2 ? V2_SCHEMA_ID : (version === 3 ? V3_SCHEMA_ID : (version === 4 ? V4_SCHEMA_ID : (version === 5 ? V5_SCHEMA_ID : (version === 6 ? V6_SCHEMA_ID : (version === 7 ? V7_SCHEMA_ID : (version === 8 ? V8_SCHEMA_ID : (version === 9 ? V9_SCHEMA_ID : (version === 10 ? V10_SCHEMA_ID : (version === 11 ? V11_SCHEMA_ID : (version === 12 ? V12_SCHEMA_ID : SCHEMA_ID)))))))))));
   const requiredIndexes = version >= 17 ? REQUIRED_INDEXES : version >= 13 ? V16_REQUIRED_INDEXES : version === 1

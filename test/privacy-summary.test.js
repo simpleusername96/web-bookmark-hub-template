@@ -191,7 +191,7 @@ test("legacy metadata-only corruption omits comments and visual/folder data; job
     assert.equal(prepareSummaryPayload(subject.registry, allowed.id).comments[0].body, "included");
 
     const job = createSummaryJob(subject.registry, limited.id, { requestedBy: "test" });
-    assert.equal(job.model, "gpt-5.6-luna");
+    assert.equal(job.model, "gpt-6-luna");
     assert.equal(job.reasoning_effort, "max");
     assert.match(job.input_sha256, /^[a-f0-9]{64}$/);
     assert.deepEqual(job.policy_snapshot, {

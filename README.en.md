@@ -2,8 +2,10 @@
 
 [한국어](README.md) · English
 
-A guide and template for people who save information from many different places.
-Use Codex to pick the parts you need and adapt them to your own workflow.
+A local library for saving web links, notes, tags and previews instead of copying full pages.
+Use this template with Codex to keep the features you need and adapt it to your workflow.
+
+![Browse saved sources in the library](docs/images/library-en.png)
 
 ## Key features
 
@@ -17,7 +19,7 @@ The shortcut saves the URL first, then starts organization if the entry allows A
 
 ### 2. Add a title, summary and thumbnail
 
-Automatic organization currently uses **Luna (`gpt-5.6-luna`) / reasoning effort `max`**. It uses evidence from the saved item's page title, main text or paper abstract with these criteria:
+Automatic organization currently uses **Luna (`gpt-6-luna`) / reasoning effort `max`**. It uses evidence from the saved item's page title, main text or paper abstract with these criteria:
 
 - **Title:** Describe the subject briefly and concretely. Preserve an existing authored title.
 - **Summary:** Explain the exact article or post in one Korean sentence of 20–240 characters. Do not add unsupported facts.

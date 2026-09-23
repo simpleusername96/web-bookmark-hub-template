@@ -88,8 +88,8 @@ test("v5 migrates to the current schema with parent-only child deletion and null
     const dbPath = path.join(directory, "registry.sqlite3");
     const entryId = makeV5Fixture(dbPath);
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
-    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v17");
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
+    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v18");
     assert.equal(registry.db.prepare("SELECT body FROM entry_comments WHERE entry_id = ?").get(entryId).body, "Preserved comment");
     assert.equal(registry.db.prepare("PRAGMA foreign_key_list(entry_revisions)").all()[0].on_delete, "CASCADE");
     assert.equal(registry.db.prepare("PRAGMA foreign_key_list(capture_request_items)").all().find((row) => row.table === "entries").on_delete, "SET NULL");

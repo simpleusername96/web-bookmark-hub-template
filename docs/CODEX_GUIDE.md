@@ -32,7 +32,7 @@ Original pages stay at their source. This is not a full-page archive. MCP, watch
 
 ## What automatic organization actually does
 
-The current runner pins `gpt-5.6-luna` and reasoning effort `max` in `registry/constants.js`. Verify that the installed CLI/account can use that configuration; never silently switch models.
+The current runner pins `gpt-6-luna` and reasoning effort `max` in `registry/constants.js`. Verify that the installed CLI/account can use that configuration; never silently switch models.
 
 - **Trigger:** `Ctrl+Shift+E` saves first, then queues the exact Normal entry if it has no summary. Popup/web saves do not automatically run AI. An explicit selection plus **AI summary** can retry or refresh. Settings handles eligible first attempts.
 - **Evidence:** Project code acquires bounded evidence from the exact URL or shortcut page context. The model receives that evidence; its prompt forbids browsing, tool use and invented details. A PDF supplies only its first page transiently.

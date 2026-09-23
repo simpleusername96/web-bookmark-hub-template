@@ -34,8 +34,8 @@ test("retired schema v11 link-health data is removed without changing Entries", 
     registry.close();
 
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
-    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v17");
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
+    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v18");
     assert.equal(registry.db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'entry_link_health'").get(), undefined);
     assert.equal(registry.db.prepare("SELECT url_original FROM entries WHERE id = ?").get(entry.id).url_original, "https://example.test/kept");
   } finally {

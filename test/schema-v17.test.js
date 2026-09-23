@@ -37,7 +37,7 @@ test("v16 completed AI jobs become counted legacy attempts without fabricated us
     raw = null;
 
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     const attempt = registry.db.prepare("SELECT * FROM ai_summary_attempts WHERE entry_id = ?").get(entry.id);
     assert.equal(attempt.source, "legacy");
     assert.equal(attempt.status, "complete");

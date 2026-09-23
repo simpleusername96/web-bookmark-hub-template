@@ -16,7 +16,7 @@ const V6_KINDS = "'article','social','video','image','paper','repository','sessi
 function makeV6Fixture(dbPath) {
   const db = new DatabaseSync(dbPath);
   const v6Sql = SCHEMA_SQL
-    .replace("web-bookmark-hub/registry/v17", "web-bookmark-hub/registry/v6")
+    .replace("web-bookmark-hub/registry/v18", "web-bookmark-hub/registry/v6")
     .replace("  selected_image_storage TEXT CHECK(selected_image_storage IN ('reference_only','local_copy')),\n", "")
     .replace(`  kind TEXT CHECK(kind IN (${V9_KINDS})),\n`, "")
     .replace(V9_KINDS, V6_KINDS);
@@ -44,10 +44,10 @@ test("v6 migrates atomically through canonical content types to the current sche
     const dbPath = path.join(directory, "registry.sqlite3");
     makeV6Fixture(dbPath);
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     assert.equal(
       registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value,
-      "web-bookmark-hub/registry/v17"
+      "web-bookmark-hub/registry/v18"
     );
     assert.deepEqual(
       registry.db.prepare("SELECT kind FROM entries ORDER BY id").all().map((row) => row.kind),

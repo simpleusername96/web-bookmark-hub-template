@@ -17,7 +17,7 @@ const TIMESTAMP = "2026-09-02T00:00:00.000Z";
 function makeV8Fixture(dbPath, { invalidKind = false } = {}) {
   const db = new DatabaseSync(dbPath);
   db.exec(SCHEMA_SQL
-    .replace("web-bookmark-hub/registry/v17", "web-bookmark-hub/registry/v8")
+    .replace("web-bookmark-hub/registry/v18", "web-bookmark-hub/registry/v8")
     .replaceAll(V9_KINDS, V8_KINDS));
   db.exec("DROP TABLE capture_policy_rule_tags");
   db.exec("PRAGMA user_version = 8");
@@ -87,10 +87,10 @@ test("v8 migrates atomically to seven Content types with revisions and dependenc
     makeV8Fixture(dbPath);
     registry = openRegistry({ dbPath });
 
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     assert.equal(
       registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value,
-      "web-bookmark-hub/registry/v17"
+      "web-bookmark-hub/registry/v18"
     );
     assert.deepEqual(
       registry.db.prepare("SELECT kind FROM entries ORDER BY id").all().map((row) => row.kind),

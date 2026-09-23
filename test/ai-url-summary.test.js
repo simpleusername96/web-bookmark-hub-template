@@ -586,7 +586,7 @@ test("codex invocation is ephemeral, read-only, fixed-model, and schema constrai
     assert.ok(observed.args.includes("--json"));
     assert.ok(observed.args.includes("--ignore-user-config"));
     assert.deepEqual(observed.args.slice(observed.args.indexOf("--sandbox"), observed.args.indexOf("--sandbox") + 2), ["--sandbox", "read-only"]);
-    assert.deepEqual(observed.args.slice(observed.args.indexOf("--model"), observed.args.indexOf("--model") + 2), ["--model", "gpt-5.6-luna"]);
+    assert.deepEqual(observed.args.slice(observed.args.indexOf("--model"), observed.args.indexOf("--model") + 2), ["--model", "gpt-6-luna"]);
     assert.ok(observed.args.includes("--output-schema"));
     assert.deepEqual(observed.args.slice(observed.args.indexOf("--image"), observed.args.indexOf("--image") + 2),
       ["--image", "synthetic-first-page.png"]);

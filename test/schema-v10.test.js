@@ -19,8 +19,8 @@ test("v9 migrates atomically through the cleanup queue into the current schema",
     registry.db.exec("PRAGMA user_version = 9");
     registry.close();
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
-    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v17");
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
+    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v18");
     assert.deepEqual(
       registry.db.prepare("PRAGMA table_info(file_cleanup_queue)").all().map((row) => row.name),
       ["storage_path", "reason", "enqueued_at", "attempts", "failure_code"]

@@ -25,7 +25,7 @@ codex
 
 On Windows, `codexInvocation` in `server/ai-url-summary.js` expects `node_modules/@openai/codex/bin/codex.js` beside the Node executable. Check that path; custom npm prefixes or standalone installations may require adapting this launcher. macOS/Linux resolve `codex` from PATH.
 
-The runner uses the model/effort in `registry/constants.js`: currently `gpt-5.6-luna` / `max`. Verify account access instead of silently substituting a model. `enrichment/ai-summary-prompt.md` controls the summary language and format; it defaults to Korean independently of the UI language. Do not launch model calls during setup without the user's authorization.
+The runner uses the model/effort in `registry/constants.js`: currently `gpt-6-luna` / `max`. Verify account access instead of silently substituting a model. `enrichment/ai-summary-prompt.md` controls the summary language and format; it defaults to Korean independently of the UI language. Do not launch model calls during setup without the user's authorization.
 
 ## Chrome and AI defaults
 

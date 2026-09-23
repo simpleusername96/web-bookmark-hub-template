@@ -654,7 +654,7 @@ Notes:
   db backup creates a SQLite-only copy. Use db backup-bundle for a complete backup
   that includes the adjacent local-file tree, and stop the owning server first.
   Entry defaults are private / blocked / AI disabled. Summary jobs make no network call
-  and are fixed to gpt-5.6-luna with reasoning effort max. Visual source kinds are
+  and are fixed to gpt-6-luna with reasoning effort max. Visual source kinds are
   user_upload, browser_selected, provider_thumbnail, page_snapshot, and imported;
   page_snapshot and user_upload cannot be remote references.`;
 }

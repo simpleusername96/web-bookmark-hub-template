@@ -18,7 +18,7 @@ const RULE_KIND_COLUMN = `  kind TEXT CHECK(kind IN (${V9_KINDS})),\n`;
 function makeV7Fixture(dbPath, { conflictingColumn = false } = {}) {
   const db = new DatabaseSync(dbPath);
   db.exec(SCHEMA_SQL
-    .replace("web-bookmark-hub/registry/v17", "web-bookmark-hub/registry/v7")
+    .replace("web-bookmark-hub/registry/v18", "web-bookmark-hub/registry/v7")
     .replace(STORAGE_COLUMN, "")
     .replace(RULE_KIND_COLUMN, "")
     .replace(V9_KINDS, V8_KINDS));
@@ -43,10 +43,10 @@ test("v7 migrates atomically with unset selected-image storage and optional rule
     const dbPath = path.join(directory, "registry.sqlite3");
     makeV7Fixture(dbPath);
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     assert.equal(
       registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value,
-      "web-bookmark-hub/registry/v17"
+      "web-bookmark-hub/registry/v18"
     );
     assert.equal(
       registry.db.prepare("SELECT selected_image_storage FROM capture_policy_defaults WHERE id = 1").get().selected_image_storage,

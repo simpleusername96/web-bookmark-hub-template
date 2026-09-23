@@ -111,13 +111,13 @@ test("registry CLI routes every MVP operation with structured JSON", () => {
 
   try {
     const initialized = runJson(["--json", "init"], { dbPath });
-    assert.equal(initialized.data.schema_version, 17);
+    assert.equal(initialized.data.schema_version, 18);
     assert.deepEqual(runJson(["db", "reconcile-cleanup", "--limit", "10"], { dbPath }).data, {
       attempted: 0, removed: 0, missing: 0, failed: 0, pending: 0
     });
     const backupPath = path.join(directory, "backup", "registry-before.sqlite3");
     const backup = runJson(["db", "backup", backupPath], { dbPath }).data;
-    assert.equal(backup.source_schema_version, 17);
+    assert.equal(backup.source_schema_version, 18);
     assert.equal(backup.backup_path, backupPath);
     assert.ok(backup.byte_size > 0);
     assert.equal(fs.existsSync(backupPath), true);
@@ -239,7 +239,7 @@ test("registry CLI routes every MVP operation with structured JSON", () => {
     const snapshot = runJson(["snapshots", "attach", String(entryId), "--file", imagePath], { dbPath }).data;
     assert.equal(runJson(["snapshots", "list", String(entryId)], { dbPath }).data.length, 1);
     const job = runJson(["summaries", "create-job", String(entryId), "--requested-by", "cli-test"], { dbPath }).data;
-    assert.equal(job.model, "gpt-5.6-luna");
+    assert.equal(job.model, "gpt-6-luna");
     assert.equal(runJson(["summaries", "list-jobs", "--entry-id", String(entryId), "--status", "queued"],
       { dbPath }).data.total, 1);
     assert.equal(runJson(["snapshots", "remove", String(snapshot.id)], { dbPath }).data.removed, true);

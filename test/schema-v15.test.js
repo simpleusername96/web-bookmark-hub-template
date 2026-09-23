@@ -37,7 +37,7 @@ test("v14 migration derives all compatibility policy mirrors from visibility", (
     raw = null;
 
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     assert.deepEqual([getEntry(registry, normal.id).agent_access, getEntry(registry, normal.id).ai_processing], ["allowed", "enabled"]);
     assert.deepEqual([getEntry(registry, privateEntry.id).agent_access, getEntry(registry, privateEntry.id).ai_processing], ["blocked", "disabled"]);
     const defaults = getCapturePolicy(registry);

@@ -51,7 +51,7 @@ test("AI URL summary routes require Web auth, CSRF, a fixed mode, and idempotenc
     status: "idle",
     eligible_count: 3,
     progress: null,
-    model: "gpt-5.6-luna",
+    model: "gpt-6-luna",
     reasoning_effort: "max",
     last_run: null
   };
@@ -211,7 +211,7 @@ test("HTTP matrix requires loopback web sessions, CSRF, idempotency, and bearer 
     assert.equal(health.status, 200);
     assert.deepEqual(payload(health).data.capabilities, { permanent_delete: true });
     assert.equal(payload(health).data.api_version, 1);
-    assert.equal(payload(health).data.schema_version, 17);
+    assert.equal(payload(health).data.schema_version, 18);
     assert.equal((await dispatch(subject, "GET", "/api/v1/health", { remoteAddress: "192.0.2.4" })).status, 403);
     assert.equal((await dispatch(subject, "POST", "/api/v1/health")).status, 405);
     assert.equal((await dispatch(subject, "GET", "/api/v1/entries")).status, 401);

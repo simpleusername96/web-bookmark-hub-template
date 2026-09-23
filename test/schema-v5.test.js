@@ -53,8 +53,8 @@ test("v4 migrates to the current schema while preserving legacy duplicates and c
     db.exec("PRAGMA foreign_keys = ON");
     makeV4Fixture(db);
     initializeSchema(db, withTransaction);
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
-    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v17");
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
+    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v18");
     assert.equal(registry.db.prepare("SELECT COUNT(*) AS count FROM entries").get().count, 4);
     assert.equal(getEntry(registry, 1).title, null);
     assert.equal(getEntry(registry, 1).title_origin, "capture_caption");

@@ -198,7 +198,7 @@ test('AI settings show the eligible count and start all pending URLs', async fun
   const subject = fixture();
   let startCalls = 0;
   const completed = {
-    status: 'idle', eligible_count: 9, model: 'gpt-5.6-luna', reasoning_effort: 'max',
+    status: 'idle', eligible_count: 9, model: 'gpt-6-luna', reasoning_effort: 'max',
     last_run: { counts: { complete: 8, partial: 1, failed: 1 } }
   };
   const controller = createSettingsController({

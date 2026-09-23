@@ -155,7 +155,7 @@ test("opening a registry creates versioned schema, foreign keys, and append-only
     assert.equal(registry.db.prepare("PRAGMA foreign_keys").get().foreign_keys, 1);
     const names = registry.db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name").all().map((row) => row.name);
     assert.deepEqual(names.filter((name) => !name.startsWith("sqlite_")).sort(), ["ai_summary_attempts", "api_clients", "capture_policy_defaults", "capture_policy_rule_tags", "capture_policy_rules", "capture_request_items", "capture_requests", "entries", "entry_comments", "entry_revisions", "entry_tags", "entry_visual_assets", "file_cleanup_queue", "folders", "registry_meta", "summaries", "summary_jobs", "tags"]);
-    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v17");
+    assert.equal(registry.db.prepare("SELECT value FROM registry_meta WHERE key = 'schema_id'").get().value, "web-bookmark-hub/registry/v18");
     registry.db.prepare("INSERT INTO entries (url_original, url_canonical, kind, kind_source, provider, source_domain, saved_at, record_created_at, record_updated_at) VALUES (?, ?, 'page', 'derived', 'generic-web', 'example.test', ?, ?, ?)").run("https://example.test/a", "https://example.test/a", "2026-01-01T00:00:00.000Z", "2026-01-01T00:00:00.000Z", "2026-01-01T00:00:00.000Z");
     assert.equal(registry.db.prepare("SELECT content_focus FROM entries WHERE id = 1").get().content_focus, "text");
     registry.db.prepare("INSERT INTO entries (url_original, url_canonical, kind, kind_source, provider, source_domain, saved_at, record_created_at, record_updated_at) VALUES (?, ?, 'page', 'derived', 'generic-web', 'example.test', ?, ?, ?)").run("https://example.test/b", "https://example.test/b", "2026-01-02T00:00:00.000Z", "2026-01-02T00:00:00.000Z", "2026-01-02T00:00:00.000Z");
@@ -183,7 +183,7 @@ test("a valid v1 registry migrates atomically to v4 without changing existing da
     createV1Fixture(dbPath);
     registry = openRegistry({ dbPath });
     const { db } = registry;
-    assert.equal(db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(db.prepare("PRAGMA user_version").get().user_version, 18);
     const migratedEntry = db.prepare("SELECT content_focus, folder_id, created_via FROM entries WHERE id = 1").get();
     assert.equal(migratedEntry.content_focus, "text");
     assert.equal(migratedEntry.created_via, "legacy");

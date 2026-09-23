@@ -17,7 +17,7 @@ test("v13 migration preserves rule identity, policies and tags while allowing di
   let old;
   try {
     old = new DatabaseSync(dbPath);
-    const v13 = SCHEMA_SQL.replace("web-bookmark-hub/registry/v17", "web-bookmark-hub/registry/v13")
+    const v13 = SCHEMA_SQL.replace("web-bookmark-hub/registry/v18", "web-bookmark-hub/registry/v13")
       .replace(/  capture_mode TEXT[^\n]+\n/u, "")
       .replace("UNIQUE(hostname, path_prefix, capture_mode)", "UNIQUE(hostname, path_prefix)");
     old.exec(v13);
@@ -28,7 +28,7 @@ test("v13 migration preserves rule identity, policies and tags while allowing di
     old.close();
     old = null;
     registry = openRegistry({ dbPath });
-    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 17);
+    assert.equal(registry.db.prepare("PRAGMA user_version").get().user_version, 18);
     const [rule] = listCapturePolicyRules(registry);
     assert.equal(rule.id, 7);
     assert.equal(rule.capture_mode, "all");
