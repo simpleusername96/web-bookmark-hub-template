@@ -4,7 +4,7 @@ Use this reference when preparing a user's copy in Codex. Read `docs/PROJECT.md`
 
 ## Runtime
 
-- Node.js **24.19.0 or later**, Chrome, and Git. No app npm dependencies or build step.
+- Node.js **24.22.1 or later**, Chrome, and Git. No app npm dependencies or build step.
 - Windows is the primary verified environment. macOS/Linux have not received equivalent end-to-end verification.
 - Start from the repository root:
 

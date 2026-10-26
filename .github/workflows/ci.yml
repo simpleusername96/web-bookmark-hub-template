@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: '>=24.22.1 <25'
+          check-latest: true
       - run: node scripts/verify.js
       - run: node scripts/benchmark-registry.js --entries 1000 --samples 3 --json
